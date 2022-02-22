@@ -1,8 +1,12 @@
 const jwt = require('jsonwebtoken');
 
-const API_SECRET = 'secret';
+const API_SECRET = 'secret_key';
+const JWT_CONFIG = {
+  expiresIn: '1d',
+  algorithm: 'HS256',
+  }; 
 
-const genToken = (data) => jwt.sign({ ...data }, API_SECRET);
+const genToken = (data) => jwt.sign({ ...data }, API_SECRET, JWT_CONFIG);
 
 const verifyToken = (token) => {
   try {
