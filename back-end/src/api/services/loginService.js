@@ -1,12 +1,12 @@
 const { users } = require('../../database/models');
 const { badRequest } = require('../utils/statusCode');
 const errorConstructor = require('../utils/errorHandling');
-const md5 = require('../utils/md5')
+const md5 = require('../utils/md5');
 
 const { genToken } = require('./authService');
 
 const login = async (email, password) => {
-  const hash = md5(password)
+  const hash = md5(password);
 
   const user = await users.findOne({ where: { email } });
   if (!user) throw errorConstructor(badRequest, 'Invalid username or password');
