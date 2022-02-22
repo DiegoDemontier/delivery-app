@@ -4,7 +4,7 @@ const service = require('../services/usersService');
 const createUser = async (req, res, next) => {
   try {
     const { name, email, password } = req.body;
-    const role = 'user';
+    const role = 'customer';
 
     const data = { name, email, password, role };
     await service.createUser(data);
