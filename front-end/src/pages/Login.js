@@ -11,7 +11,7 @@ function Login() {
     password: '',
   });
 
-  const handleChangeLogin = ({ target: value, name }) => {
+  const handleChangeLogin = ({ target: { value, name } }) => {
     setLogin({
       ...login,
       [name]: value,
@@ -29,7 +29,7 @@ function Login() {
             inputPlaceholder="email@trybeer.com.br"
             name="email"
             type="text"
-            value={ login.email }
+            valueProps={ login.email }
             datatestid="common_login__input-email"
             handleChangeLogin={ handleChangeLogin }
           />
@@ -38,7 +38,7 @@ function Login() {
             inputPlaceholder="***************"
             name="password"
             type="password"
-            value={ login.password }
+            valueProps={ login.password }
             datatestid="common_login__input-password"
             handleChangeLogin={ handleChangeLogin }
           />
