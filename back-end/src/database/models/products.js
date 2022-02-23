@@ -1,5 +1,5 @@
-const products = (sequelize, DataTypes) => {
-  const product = sequelize.define(
+module.exports = (sequelize, DataTypes) => {
+  const products = sequelize.define(
     'products',
     {
       name: DataTypes.STRING(100),
@@ -11,7 +11,5 @@ const products = (sequelize, DataTypes) => {
     },
   );
 
-  return product;
+  return products;
 };
-
-module.exports = products;

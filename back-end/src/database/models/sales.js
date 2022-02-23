@@ -1,5 +1,5 @@
-const sales = (sequelize, DataTypes) => {
-  const sale = sequelize.define(
+module.exports = (sequelize, DataTypes) => {
+  const sales = sequelize.define(
     'sales',
     {
       total_price: DataTypes.DECIMAL(9,2),
@@ -13,15 +13,13 @@ const sales = (sequelize, DataTypes) => {
     },
   );
 
-  sale.associate = (models) => {
-    sale.belongsTo(models.users, { foreignKey: 'user_id', as: 'user' });
+  sales.associate = (models) => {
+    sales.belongsTo(models.users, { foreignKey: 'user_id', as: 'user' });
   };
 
-  sale.associate = (models) => {
-    sale.belongsTo(models.users, { foreignKey: 'seller_id', as: 'seller' });
+  sales.associate = (models) => {
+    sales.belongsTo(models.users, { foreignKey: 'seller_id', as: 'seller' });
   };
 
-  return sale;
+  return sales;
 };
-
-module.exports = sales;
