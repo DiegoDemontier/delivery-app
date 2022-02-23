@@ -1,0 +1,16 @@
+.label {
+  margin-bottom: 10px;
+  color: #584c4c;
+}
+
+.input {
+  padding: 15px;
+  border-radius: 3px;
+  border: 1px darkgrey solid;
+  margin-bottom: 15px;
+  background-color: white;
+}
+
+.input::placeholder {
+  font-size: 16px;
+}

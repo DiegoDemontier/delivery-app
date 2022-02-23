@@ -1,9 +1,10 @@
 import React from 'react';
 import './App.css';
 // import rockGlass from './images/rockGlass.svg';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import InfoProvider from './context/infoProvider';
-import Login from './pages/login';
+import Login from './pages/Login';
+import Cadastro from './pages/Cadastro';
 
 function App() {
   return (
@@ -11,8 +12,9 @@ function App() {
 
       <InfoProvider>
         <Switch>
-          <Route exact path="/" component={ Login } />
-          <Route exact path="/login" component={ Login } />
+          <Route path="/login" component={ Login } />
+          <Route exact path="/"><Redirect to="/login" /></Route>
+          <Route path="/register" component={ Cadastro } />
         </Switch>
       </InfoProvider>
 

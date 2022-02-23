@@ -1,0 +1,15 @@
+.entry-card {
+  width: 425px;
+  height: 444px;
+  background-color: #EAF1EF;
+  border: 1px solid #B1C2BE;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  justify-content: center;
+}
+
+.card-form {
+  display: flex;
+  flex-direction: column;
+}
