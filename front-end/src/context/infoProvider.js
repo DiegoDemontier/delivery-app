@@ -7,6 +7,24 @@ function InfoProvider({ children }) {
 
   };
 
+  // const requestAllContracts = async () => {
+  //   const headerAuth = {
+  //     headers: {
+  //       authorization: infoUserContext.token
+  //     }
+  //   }
+
+  //   const getContracts = await axios
+  //   .get('http://localhost:3001/contracts', headerAuth)
+  //   .then((res) => res.data)
+  //   .catch((err) => null)
+
+  //   if (!getContracts) return "Falha na requisiçao"
+
+  //   setAllContracts(getContracts)
+  //   return console.log(allContracts)
+  // };
+
   return (
   // diponibiliza os estados da funcao anterio para o context criado em outro arquivo
   // e adiciona o provider que ira englobar toda aplicaçao
