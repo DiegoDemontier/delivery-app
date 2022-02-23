@@ -15,19 +15,21 @@ function Cadastro() {
             inputPlaceholder="Seu nome"
             name="name"
             type="text"
-            datatestid="common_login__input-email"
+            datatestid=""
           />
           <Input
             labelName="Email"
             inputPlaceholder="seu-email@site.com.br"
             name="email"
             type="email"
+            datatestid=""
           />
           <Input
             labelName="Senha"
             inputPlaceholder="***************"
             name="password"
             type="password"
+            datatestid=""
           />
           <GreenButton text="LOGIN" />
         </Card>

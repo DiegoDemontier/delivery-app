@@ -16,15 +16,17 @@ function Login() {
             inputPlaceholder="email@trybeer.com.br"
             name="login"
             type="text"
+            datatestid="common_login__input-email"
           />
           <Input
             labelName="Senha"
             inputPlaceholder="***************"
             name="login"
             type="password"
+            datatestid="common_login__input-password"
           />
-          <GreenButton text="LOGIN" />
-          <InnerGreenButton text="Ainda não tenho conta" />
+          <GreenButton text="LOGIN" datatestid="common_login__button-login" />
+          <InnerGreenButton text="Ainda não tenho conta" datatestid="common_login__button-register" />
         </Card>
       </div>
     </div>

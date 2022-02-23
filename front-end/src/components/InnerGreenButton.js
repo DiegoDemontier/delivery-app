@@ -4,7 +4,7 @@ import './InnerGreenButton.css';
 
 function InnerGreenButton({ text, datatestid }) {
   return (
-    <button type="button" className="inner-green-button" datat-testis={datatestid}>
+    <button type="button" className="inner-green-button" data-testid={datatestid}>
       { text }
     </button>
   );
