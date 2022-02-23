@@ -14,5 +14,5 @@ export default GreenButton;
 
 GreenButton.propTypes = {
   text: PropTypes.string.isRequired,
-  datatestid: PropTypes.string.isRequired
+  datatestid: PropTypes.string.isRequired,
 };

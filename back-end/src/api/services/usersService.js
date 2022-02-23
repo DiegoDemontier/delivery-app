@@ -10,9 +10,13 @@ const createUser = async (data) => {
 
   const emailExists = await users.findOne({ where: { email: data.email } });
   if (emailExists) throw errorConstructor(Conflict, 'User already registered');
-  
-  data.password = md5(data.password);
-  await users.create(data);
+
+  const { name, email, password, role } = data;
+
+  const newPassword = md5(password);
+  const newData = { name, email, newPassword, role };
+
+  await users.create(newData);
 
   return null;
 };
