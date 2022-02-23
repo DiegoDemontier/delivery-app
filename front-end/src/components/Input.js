@@ -6,14 +6,14 @@ function Input({ labelName, inputPlaceholder, name, type, datatestid }) {
   return (
     <>
       <label htmlFor={ name } className="label">
-        {labelName}
+        { labelName }
       </label>
       <input
         type={ type }
         placeholder={ inputPlaceholder }
         name={ name }
         className="input"
-        data-testid={datatestid}
+        data-testid={ datatestid }
       />
     </>
   );
@@ -26,4 +26,5 @@ Input.propTypes = {
   inputPlaceholder: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
+  datatestid: PropTypes.string.isRequired,
 };

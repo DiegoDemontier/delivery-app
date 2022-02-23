@@ -6,7 +6,7 @@ function Card({ children }) {
   return (
     <div className="entry-card">
       <form className="card-form">
-        {children}
+        { children }
       </form>
     </div>
   );

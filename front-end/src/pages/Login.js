@@ -26,7 +26,10 @@ function Login() {
             datatestid="common_login__input-password"
           />
           <GreenButton text="LOGIN" datatestid="common_login__button-login" />
-          <InnerGreenButton text="Ainda não tenho conta" datatestid="common_login__button-register" />
+          <InnerGreenButton 
+            text="Ainda não tenho conta" 
+            datatestid="common_login__button-register" 
+          />
         </Card>
       </div>
     </div>
