@@ -1,7 +1,7 @@
 const { users } = require('../../database/models');
 const { Conflict, badRequest } = require('../utils/statusCode');
 const errorConstructor = require('../utils/errorHandling');
-const md5 = require('../utils/md5')
+const md5 = require('../utils/md5');
 const { userSchema } = require('../utils/schemas');
 
 const createUser = async (data) => {
