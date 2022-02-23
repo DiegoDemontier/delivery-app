@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './Card.css';
 
-function Card({ children}) {
+function Card({ children }) {
   return (
     <div className="entry-card">
       <form className="card-form">
