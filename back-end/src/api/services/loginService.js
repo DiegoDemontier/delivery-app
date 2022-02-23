@@ -16,11 +16,11 @@ const login = async (email, password) => {
     throw errorConstructor(notFound, 'Invalid username or password');
   }
 
-  const { password: _password, ...newData } = user.dataValues;
+  const { id: _id, password: _password, ...data } = user.dataValues;
+  
+  const token = genToken(data);
 
-  const token = genToken(newData);
-
-  return { token };
+  return { ...data, token };
 };
 
 module.exports = {
