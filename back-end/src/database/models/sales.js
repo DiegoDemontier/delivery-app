@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     {
       createdAt: 'sale_date',
-      updatedAt: null,
+      updatedAt: false,
     },
   );
 
