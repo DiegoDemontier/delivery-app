@@ -1,14 +1,14 @@
 .label {
-  margin-bottom: 10px;
   color: #584c4c;
+  margin-bottom: 10px;
 }
 
 .input {
-  padding: 15px;
-  border-radius: 3px;
-  border: 1px darkgrey solid;
-  margin-bottom: 15px;
   background-color: white;
+  border: 1px darkgrey solid;
+  border-radius: 3px;
+  margin-bottom: 15px;
+  padding: 15px;
 }
 
 .input::placeholder {
