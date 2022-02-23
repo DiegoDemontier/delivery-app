@@ -14,7 +14,7 @@ const createUser = async (data) => {
   const { name, email, password, role } = data;
 
   const newPassword = md5(password);
-  const newData = { name, email, newPassword, role };
+  const newData = { name, email, password: newPassword, role };
 
   await users.create(newData);
 
