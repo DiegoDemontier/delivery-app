@@ -8,29 +8,29 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      user_id: {
+      userId: {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: { model: 'users', key: 'id' },
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE',
       },
-      seller_id: {
+      sellerId: {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: { model: 'users', key: 'id' },
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE',
       },
-      total_price: {
+      totalPrice: {
         allowNull: false,
         type: Sequelize.DECIMAL(9,2)
       },
-      delivery_address: {
+      deliveryAddress: {
         allowNull: false,
         type: Sequelize.STRING(100)
       },
-      delivery_number: {
+      deliveryNumber: {
         allowNull: false,
         type: Sequelize.STRING(50)
       },
@@ -39,7 +39,7 @@ module.exports = {
         defaultValue: 'Pendente',
         type: Sequelize.STRING(50)
       },
-      sale_date: {
+      saleDate: {
         allowNull: false,
         type: Sequelize.DATE
       }
