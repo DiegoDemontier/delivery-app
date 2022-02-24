@@ -5,8 +5,9 @@ const md5 = require('../utils/md5');
 const { userSchema } = require('../utils/schemas');
 
 const createUser = async (data) => {
+  const { name, email, password } = data;
   const newData = data;
-  const { error } = userSchema.validate(data);
+  const { error } = userSchema.validate({ name, email, password });
   if (error) throw errorConstructor(badRequest, error.message);
 
   const emailExists = await users.findOne({ where: { email: data.email } });

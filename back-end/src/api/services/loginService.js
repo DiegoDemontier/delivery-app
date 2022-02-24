@@ -8,10 +8,11 @@ const { genToken } = require('./authService');
 
 const login = async (email, password) => {
   const { error } = loginSchema.validate({ email, password });
+  if (error) throw errorConstructor(badRequest, error.message);
+  
   const user = await users.findOne({ where: { email } });
   const newPassword = md5(password);
   
-  if (error) throw errorConstructor(badRequest, error.message);
   if (!user || newPassword !== user.dataValues.password) {
     throw errorConstructor(notFound, 'Invalid username or password');
   }

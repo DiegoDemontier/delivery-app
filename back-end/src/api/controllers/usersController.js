@@ -3,8 +3,7 @@ const { created } = require('../utils/statusCode');
 
 const createUser = async (req, res, next) => {
   try {
-    const { name, email, password } = req.body;
-    const role = 'customer';
+    const { name, email, password, role } = req.body;
 
     const data = { name, email, password, role };
     await service.createUser(data);

@@ -18,6 +18,7 @@ const createSale = async (data) => {
     totalPrice,
     deliveryAddress,
     deliveryNumber });
+    
   await sale.addProducts(product);
   
   saleProduct.forEach(async ({ productId, quantity }) => {
