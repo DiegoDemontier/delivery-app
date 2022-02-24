@@ -18,17 +18,19 @@ function Login() {
       [name]: value,
     });
   };
-  
-  const history = useHistory()
+
+  const history = useHistory();
 
   const emailValidation = (email) => {
     const regexValidation = /\S+@\S+\.\S+/;
     return regexValidation.test(email);
-  }
+  };
 
-  const passwordValidation = (password) => password.length >= 6;
+  const PASSWORD_LENGHT = 6;
+  const passwordValidation = (password) => password.length >= PASSWORD_LENGHT;
 
-  const buttonStatus = useMemo(()=> !emailValidation(login.email) || !passwordValidation(login.password), [login] );
+  const buttonStatus = useMemo(() => !emailValidation(login.email)
+    || !passwordValidation(login.password), [login]);
 
   return (
     <div className="card-container">
@@ -42,7 +44,7 @@ function Login() {
             type="text"
             value={ login.email }
             datatestid="common_login__input-email"
-            handleChangeLogin={ handleChangeLogin }
+            handleChange={ handleChangeLogin }
           />
           <Input
             labelName="Senha"
@@ -51,7 +53,7 @@ function Login() {
             type="password"
             value={ login.password }
             datatestid="common_login__input-password"
-            handleChangeLogin={ handleChangeLogin }
+            handleChange={ handleChangeLogin }
           />
           <GreenButton
             text="LOGIN"
@@ -61,7 +63,7 @@ function Login() {
           <InnerGreenButton
             text="Ainda não tenho conta"
             datatestid="common_login__button-register"
-            gotoRegister={()=> history.push('/register')}
+            gotoRegister={ () => history.push('/register') }
           />
         </Card>
       </div>

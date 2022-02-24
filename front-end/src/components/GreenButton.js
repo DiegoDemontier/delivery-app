@@ -9,7 +9,7 @@ function GreenButton({ text, datatestid, buttonState }) {
       type="button"
       className="green-button"
       data-testid={ datatestid }
-      disabled={ false }
+      disabled={ buttonState }
     >
       { text }
     </button>
@@ -21,5 +21,5 @@ export default GreenButton;
 GreenButton.propTypes = {
   text: PropTypes.string.isRequired,
   datatestid: PropTypes.string.isRequired,
-  buttonState: PropTypes.bool,
+  buttonState: PropTypes.bool.isRequired,
 };

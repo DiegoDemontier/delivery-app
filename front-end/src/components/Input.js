@@ -7,7 +7,7 @@ function Input({ labelName,
   name,
   type,
   datatestid,
-  handleChangeLogin,
+  handleChange,
   value }) {
   return (
     <>
@@ -21,7 +21,7 @@ function Input({ labelName,
         value={ value }
         className="input"
         data-testid={ datatestid }
-        onChange={ handleChangeLogin }
+        onChange={ handleChange }
       />
     </>
   );
@@ -35,6 +35,10 @@ Input.propTypes = {
   name: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
   datatestid: PropTypes.string.isRequired,
-  handleChangeLogin: PropTypes.func.isRequired,
-  value: PropTypes.string,
+  handleChange: PropTypes.func.isRequired,
+  value: PropTypes.string.isRequired,
 };
+
+// Input.defaultProps = {
+//   value: '',
+// };
