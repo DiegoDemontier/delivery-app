@@ -1,3 +1,5 @@
+const { Op } = require('sequelize');
+
 const { sales, products, salesProducts } = require('../../database/models');
 const { badRequest } = require('../utils/statusCode');
 const errorConstructor = require('../utils/errorHandling');
@@ -10,19 +12,20 @@ const createSale = async (data) => {
   if (error) throw errorConstructor(badRequest, error.message);
   
   const arrayProductId = saleProduct.map(({ productId }) => productId);
-  const product = await products.findAll({ where: { id: arrayProductId } });
+  const getProducts = await products.findAll({ where: { id: arrayProductId } });
 
-  const sale = await sales.create({
+  const newSale = await sales.create({
     userId,
     sellerId,
     totalPrice,
     deliveryAddress,
     deliveryNumber });
     
-  await sale.addProducts(product);
-  
+  await newSale.addProducts(getProducts);
+  const { dataValues: { id: saleId } } = newSale;
+
   saleProduct.forEach(async ({ productId, quantity }) => {
-    await salesProducts.update({ quantity }, { where: { productId, saleId: 1 } });
+    await salesProducts.update({ quantity }, { where: { [Op.and]: [{ productId }, { saleId }] } });
   });
 
   return null;

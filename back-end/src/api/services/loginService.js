@@ -10,18 +10,23 @@ const login = async (email, password) => {
   const { error } = loginSchema.validate({ email, password });
   if (error) throw errorConstructor(badRequest, error.message);
   
-  const user = await users.findOne({ where: { email } });
+  const getUser = await users.findOne({ where: { email } });
   const newPassword = md5(password);
   
-  if (!user || newPassword !== user.dataValues.password) {
+  if (!getUser || newPassword !== getUser.dataValues.password) {
     throw errorConstructor(notFound, 'Invalid username or password');
   }
-
-  const { id: _id, password: _password, ...data } = user.dataValues;
   
-  const token = genToken(data);
+  const { id, name, role } = getUser.dataValues;
+  const token = genToken({ id, name, email, role });
+  const data = {
+    name,
+    email,
+    role,
+    token,
+  };
 
-  return { ...data, token };
+  return data;
 };
 
 module.exports = {

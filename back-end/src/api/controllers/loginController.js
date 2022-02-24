@@ -5,9 +5,9 @@ const login = async (req, res, next) => {
   try {
     const { email, password } = req.body;
 
-    const user = await service.login(email, password);
+    const getUserInfo = await service.login(email, password);
 
-    return res.status(success).json(user);
+    return res.status(success).json(getUserInfo);
   } catch (error) {
     console.log(`ERROR LOGIN -> ${error.message}`);
     return next(error);
