@@ -1,15 +1,24 @@
 import React from 'react';
 import './App.css';
-import rockGlass from './images/rockGlass.svg';
+// import rockGlass from './images/rockGlass.svg';
+import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
+import InfoProvider from './context/infoProvider';
+import Login from './pages/Login';
+import Cadastro from './pages/Cadastro';
 
 function App() {
   return (
-    <div className="App">
-      <span className="logo">TRYBE</span>
-      <object className="rocksGlass" type="image/svg+xml" data={ rockGlass }>
-        Glass
-      </object>
-    </div>
+    <BrowserRouter>
+
+      <InfoProvider>
+        <Switch>
+          <Route path="/login" component={ Login } />
+          <Route exact path="/"><Redirect to="/login" /></Route>
+          <Route path="/register" component={ Cadastro } />
+        </Switch>
+      </InfoProvider>
+
+    </BrowserRouter>
   );
 }
 
