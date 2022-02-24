@@ -16,6 +16,18 @@ const createUser = async (req, res, next) => {
   }
 };
 
+const findAllUser = async (req, res, next) => {
+  try {
+    const users = await service.findAllUser();
+    
+    return res.status(created).json(users);
+  } catch (error) {
+    console.log(`ERROR CREATE USER -> ${error.message}`);
+    return next(error);
+  }
+};
+
 module.exports = {
   createUser,
+  findAllUser,
 };
