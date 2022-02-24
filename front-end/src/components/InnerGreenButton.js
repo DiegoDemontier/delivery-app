@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './InnerGreenButton.css';
 
-function InnerGreenButton({ text, datatestid }) {
+function InnerGreenButton({ text, datatestid, gotoRegister }) {
   return (
-    <button type="button" className="inner-green-button" data-testid={ datatestid }>
+    <button type="button" className="inner-green-button" data-testid={ datatestid } onClick={gotoRegister}>
       { text }
     </button>
   );

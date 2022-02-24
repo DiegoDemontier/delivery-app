@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
+import { useHistory } from 'react-router-dom';
 import Card from '../components/Card';
 import './Login.css';
 import Input from '../components/Input';
@@ -17,7 +18,17 @@ function Login() {
       [name]: value,
     });
   };
-  console.log(login);
+  
+  const history = useHistory()
+
+  const emailValidation = (email) => {
+    const regexValidation = /\S+@\S+\.\S+/;
+    return regexValidation.test(email);
+  }
+
+  const passwordValidation = (password) => password.length >= 6;
+
+  const buttonStatus = useMemo(()=> !emailValidation(login.email) || !passwordValidation(login.password), [login] );
 
   return (
     <div className="card-container">
@@ -29,7 +40,7 @@ function Login() {
             inputPlaceholder="email@trybeer.com.br"
             name="email"
             type="text"
-            valueProps={ login.email }
+            value={ login.email }
             datatestid="common_login__input-email"
             handleChangeLogin={ handleChangeLogin }
           />
@@ -38,14 +49,19 @@ function Login() {
             inputPlaceholder="***************"
             name="password"
             type="password"
-            valueProps={ login.password }
+            value={ login.password }
             datatestid="common_login__input-password"
             handleChangeLogin={ handleChangeLogin }
           />
-          <GreenButton text="LOGIN" datatestid="common_login__button-login" />
+          <GreenButton
+            text="LOGIN"
+            datatestid="common_login__button-login"
+            buttonState={ buttonStatus }
+          />
           <InnerGreenButton
             text="Ainda não tenho conta"
             datatestid="common_login__button-register"
+            gotoRegister={()=> history.push('/register')}
           />
         </Card>
       </div>

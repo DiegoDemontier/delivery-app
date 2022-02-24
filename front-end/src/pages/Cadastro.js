@@ -31,7 +31,7 @@ function Cadastro() {
             type="password"
             datatestid=""
           />
-          <GreenButton text="LOGIN" />
+          <GreenButton text="CADASTRAR" />
         </Card>
       </div>
     </div>
