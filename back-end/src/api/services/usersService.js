@@ -21,7 +21,7 @@ const createUser = async (data) => {
   return null;
 };
 
-const findAllUser = async () => {
+const findAllUsers = async () => {
   const getUsers = await users.findAll({});
   
   return getUsers;
@@ -29,5 +29,5 @@ const findAllUser = async () => {
 
 module.exports = {
   createUser,
-  findAllUser,
+  findAllUsers,
 };
