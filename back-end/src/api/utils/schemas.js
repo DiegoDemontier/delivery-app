@@ -18,7 +18,7 @@ const saleSchema = Joi.object({
   total_price: Joi.number().precision(2).required(),
   delivery_address: Joi.string().max(100).required(),
   delivery_number: Joi.string().max(50).required(),
-  status: Joi.string().max(50).required(),
+  status: Joi.string().max(50),
 });
 
 module.exports = {
