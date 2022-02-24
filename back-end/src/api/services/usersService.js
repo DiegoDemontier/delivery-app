@@ -10,7 +10,7 @@ const createUser = async (data) => {
   const { error } = userSchema.validate({ name, email, password });
   if (error) throw errorConstructor(badRequest, error.message);
 
-  const emailExists = await users.findOne({ where: { email: data.email } });
+  const emailExists = await users.findOne({ where: { email } });
   if (emailExists) throw errorConstructor(Conflict, 'User already registered');
 
   const newPassword = md5(password);
