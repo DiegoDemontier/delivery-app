@@ -5,13 +5,13 @@ const md5 = require('../utils/md5');
 const { userSchema } = require('../utils/schemas');
 
 const createUser = async (data) => {
-  const { error } = userSchema.validate(data);
+  const { name, email, password, role } = data;
+
+  const { error } = userSchema.validate({ name, email, password });
   if (error) throw errorConstructor(badRequest, error.message);
 
-  const emailExists = await users.findOne({ where: { email: data.email } });
+  const emailExists = await users.findOne({ where: { email } });
   if (emailExists) throw errorConstructor(Conflict, 'User already registered');
-
-  const { name, email, password, role } = data;
 
   const newPassword = md5(password);
   const newData = { name, email, password: newPassword, role };
@@ -21,6 +21,13 @@ const createUser = async (data) => {
   return null;
 };
 
+const findAllUsers = async () => {
+  const getUsers = await users.findAll({});
+  
+  return getUsers;
+};
+
 module.exports = {
   createUser,
+  findAllUsers,
 };
