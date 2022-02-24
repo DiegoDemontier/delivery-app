@@ -5,11 +5,11 @@ const login = async (req, res, next) => {
   try {
     const { email, password } = req.body;
 
-    const token = await service.login(email, password);
-    
-    return res.status(success).json(token);
+    const getUserInfo = await service.login(email, password);
+
+    return res.status(success).json(getUserInfo);
   } catch (error) {
-    console.log(`ERROR CREATE USER -> ${error.message}`);
+    console.log(`ERROR LOGIN -> ${error.message}`);
     return next(error);
   }
 };
