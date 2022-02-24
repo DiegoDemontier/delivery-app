@@ -13,12 +13,18 @@ const loginSchema = Joi.object({
 });
 
 const saleSchema = Joi.object({
-  user_id: Joi.number().integer().required(),
-  seller_id: Joi.number().integer().required(),
-  total_price: Joi.number().precision(2).required(),
-  delivery_address: Joi.string().max(100).required(),
-  delivery_number: Joi.string().max(50).required(),
+  userId: Joi.number().integer().required(),
+  sellerId: Joi.number().integer().required(),
+  totalPrice: Joi.number().precision(2).required(),
+  deliveryAddress: Joi.string().max(100).required(),
+  deliveryNumber: Joi.string().max(50).required(),
   status: Joi.string().max(50),
+  saleProduct: Joi.array().items(
+    Joi.object({
+      quantity: Joi.number().integer().required(),
+      productId: Joi.number().integer().required(),
+    }),
+  ),
 });
 
 module.exports = {
