@@ -25,11 +25,11 @@ function Cadastro() {
       name,
       email,
       password,
-      role: 'customer'
-    }
+      role: 'customer',
+    };
     const res = await requestRegister(registerData);
     console.log(res);
-    if (res.message == 'User created successfully') history.push('customer/products');
+    if (res.message === 'User created successfully') history.push('customer/products');
 
     setMessageErrorRegister('block');
   };
@@ -92,7 +92,7 @@ function Cadastro() {
             text="CADASTRAR"
             datatestid="common_register__button-register"
             buttonState={ buttonStatusRegister }
-            handleClick={handleClickRegister}
+            handleClick={ handleClickRegister }
           />
           <p
             data-testid="common_register__element-invalid_register"
