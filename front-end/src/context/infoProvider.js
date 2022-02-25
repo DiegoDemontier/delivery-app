@@ -14,8 +14,19 @@ function InfoProvider({ children }) {
     return getInfoLogin;
   };
 
+  const requestRegister = async ({ name, email, password, role }) => {
+    const getInfoLogin = await axios
+      .post('http://localhost:3001/user', { name, email, password, role })
+      .then((res) => res.data)
+      .catch((err) => err.response);
+
+    if (!getInfoLogin) return 'Falha na requisiçao';
+    return getInfoLogin;
+  };
+
   const contextValues = {
     requestLogin,
+    requestRegister,
   };
 
   return (
