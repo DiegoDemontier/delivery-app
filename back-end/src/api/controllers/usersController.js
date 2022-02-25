@@ -1,5 +1,5 @@
 const service = require('../services/usersService');
-const { created } = require('../utils/statusCode');
+const { created, success } = require('../utils/statusCode');
 
 const createUser = async (req, res, next) => {
   try {
@@ -17,9 +17,9 @@ const createUser = async (req, res, next) => {
 
 const findAllUsers = async (req, res, next) => {
   try {
-    const users = await service.findAllUsers();
+    const getAllUsers = await service.findAllUsers();
     
-    return res.status(created).json(users);
+    return res.status(success).json(getAllUsers);
   } catch (error) {
     console.log(`ERROR FIND ALL USERS -> ${error.message}`);
     return next(error);
