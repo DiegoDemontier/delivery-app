@@ -1,33 +1,37 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import axios from 'axios';
 import InfoContext from './infoContext';
 
 function InfoProvider({ children }) {
-  const contextValues = {
+  const requestLogin = async ({ email, password }) => {
+    const getInfoLogin = await axios
+      .post('http://localhost:3001/login', { email, password })
+      .then((res) => res.data)
+      .catch((err) => err.response);
 
+    if (!getInfoLogin) return 'Falha na requisiçao';
+    return getInfoLogin;
   };
 
-  // const requestAllContracts = async () => {
-  //   const headerAuth = {
-  //     headers: {
-  //       authorization: infoUserContext.token
-  //     }
-  //   }
+  const requestRegister = async ({ name, email, password, role }) => {
+    const getInfoLogin = await axios
+      .post('http://localhost:3001/user', { name, email, password, role })
+      .then((res) => res.data)
+      .catch((err) => err.response);
 
-  //   const getContracts = await axios
-  //   .get('http://localhost:3001/contracts', headerAuth)
-  //   .then((res) => res.data)
-  //   .catch((err) => null)
+    if (!getInfoLogin) return 'Falha na requisiçao';
+    return getInfoLogin;
+  };
 
-  //   if (!getContracts) return "Falha na requisiçao"
-
-  //   setAllContracts(getContracts)
-  //   return console.log(allContracts)
-  // };
+  const contextValues = {
+    requestLogin,
+    requestRegister,
+  };
 
   return (
-  // diponibiliza os estados da funcao anterio para o context criado em outro arquivo
-  // e adiciona o provider que ira englobar toda aplicaçao
+  // diponibiliza os estados e funcoes para o context
+  //  ira englobar toda aplicaçao e fornecer esses estados e funcoes
     <InfoContext.Provider value={ contextValues }>
       { children }
     </InfoContext.Provider>

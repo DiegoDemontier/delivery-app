@@ -1,15 +1,38 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useContext } from 'react';
+import { useHistory } from 'react-router-dom';
 import Card from '../components/Card';
 import './Login.css';
 import Input from '../components/Input';
 import GreenButton from '../components/GreenButton';
+import InfoContext from '../context/infoContext';
 
 function Cadastro() {
+  const { requestRegister } = useContext(InfoContext);
   const [register, setRegister] = useState({
     name: '',
     email: '',
     password: '',
   });
+
+  const [messageErrorRegister, setMessageErrorRegister] = useState('none');
+
+  const history = useHistory();
+
+  const handleClickRegister = async () => {
+    const { name, email, password } = register;
+
+    const registerData = {
+      name,
+      email,
+      password,
+      role: 'customer',
+    };
+    const res = await requestRegister(registerData);
+    console.log(res);
+    if (res.message === 'User created successfully') history.push('customer/products');
+
+    setMessageErrorRegister('block');
+  };
 
   const handleChangeRegister = ({ target: { value, name } }) => {
     setRegister({
@@ -69,7 +92,14 @@ function Cadastro() {
             text="CADASTRAR"
             datatestid="common_register__button-register"
             buttonState={ buttonStatusRegister }
+            handleClick={ handleClickRegister }
           />
+          <p
+            data-testid="common_register__element-invalid_register"
+            style={ { display: messageErrorRegister, color: 'red' } }
+          >
+            Usuário já cadastrado
+          </p>
         </Card>
       </div>
     </div>

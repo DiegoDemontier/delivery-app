@@ -5,7 +5,7 @@ import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import InfoProvider from './context/infoProvider';
 import Login from './pages/Login';
 import Cadastro from './pages/Cadastro';
-import Products from './pages/Products';
+import CustomerProducts from './pages/CustomerProducts';
 
 function App() {
   return (
@@ -16,7 +16,7 @@ function App() {
           <Route path="/login" component={ Login } />
           <Route exact path="/"><Redirect to="/login" /></Route>
           <Route path="/register" component={ Cadastro } />
-          <Route path="/customer/products" component={ Products } />
+          <Route path="/customer/products" component={ CustomerProducts } />
         </Switch>
       </InfoProvider>
 
