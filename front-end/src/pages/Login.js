@@ -1,16 +1,21 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import Card from '../components/Card';
 import './Login.css';
 import Input from '../components/Input';
 import GreenButton from '../components/GreenButton';
 import InnerGreenButton from '../components/InnerGreenButton';
+import InfoContext from '../context/infoContext';
 
 function Login() {
   const [login, setLogin] = useState({
     email: '',
     password: '',
   });
+  const [messageErrorLogin, setMessageErrorLogin] = useState('none');
+  const { requestLogin } = useContext(InfoContext);
+
+  const history = useHistory();
 
   const handleChangeLogin = ({ target: { value, name } }) => {
     setLogin({
@@ -19,7 +24,13 @@ function Login() {
     });
   };
 
-  const history = useHistory();
+  const handleClickLogin = async () => {
+    const res = await requestLogin(login);
+
+    if (res.token) history.push('customer/products');
+
+    setMessageErrorLogin('block');
+  };
 
   const emailValidation = (email) => {
     const regexValidation = /\S+@\S+\.\S+/;
@@ -59,12 +70,19 @@ function Login() {
             text="LOGIN"
             datatestid="common_login__button-login"
             buttonState={ buttonStatus }
+            handleClick={ handleClickLogin }
           />
           <InnerGreenButton
             text="Ainda não tenho conta"
             datatestid="common_login__button-register"
             gotoRegister={ () => history.push('/register') }
           />
+          <p
+            data-testid="common_login__element-invalid-email"
+            style={ { display: messageErrorLogin, color: 'red' } }
+          >
+            Email ou senha invalida
+          </p>
         </Card>
       </div>
     </div>
