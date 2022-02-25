@@ -4,13 +4,15 @@ import axios from 'axios';
 import InfoContext from './infoContext';
 
 function InfoProvider({ children }) {
+  const REQUEST_FAILED = 'Falha na requisiçao';
+
   const requestLogin = async ({ email, password }) => {
     const getInfoLogin = await axios
       .post('http://localhost:3001/login', { email, password })
       .then((res) => res.data)
       .catch((err) => err.response);
 
-    if (!getInfoLogin) return 'Falha na requisiçao';
+    if (!getInfoLogin) return REQUEST_FAILED;
     return getInfoLogin;
   };
 
@@ -20,13 +22,24 @@ function InfoProvider({ children }) {
       .then((res) => res.data)
       .catch((err) => err.response);
 
-    if (!getInfoLogin) return 'Falha na requisiçao';
+    if (!getInfoLogin) return REQUEST_FAILED;
     return getInfoLogin;
+  };
+
+  const requestAllProducts = async () => {
+    const getInProducts = await axios
+      .get('http://localhost:3001/product')
+      .then((res) => res.data)
+      .catch((err) => err.response);
+
+    if (!getInProducts) return REQUEST_FAILED;
+    return getInProducts;
   };
 
   const contextValues = {
     requestLogin,
     requestRegister,
+    requestAllProducts,
   };
 
   return (

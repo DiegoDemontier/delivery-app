@@ -1,19 +1,35 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './ProductCard.css';
 
-function ProductCard() {
+function ProductCard({ name, price, urlImage }) {
+  const [quantity, setQuantity] = useState(0);
+
+  const addQuantity = () => {
+    setQuantity((prev) => (
+      prev + 1
+    ));
+  };
+
+  const removeQuantity = () => {
+    if (quantity > 0) {
+      setQuantity((prev) => (
+        prev - 1
+      ));
+    }
+  };
+
   return (
     <div className="product-card">
-      <span>$ 0,00</span>
-      <img src="http://localhost:3001/images/skol_beats_senses_269ml.jpg" alt="Minha Figura" />
+      <span>{`R$ ${price}`}</span>
+      <img src={ urlImage } alt="Figura do produto" />
       <div className="footer-product-card">
-        <span>Descrição</span>
+        <span>{ name }</span>
         <div>
-          <button type="button">-</button>
+          <button onClick={ removeQuantity } type="button">-</button>
           <div>
-            <span>00</span>
+            <span>{ quantity }</span>
           </div>
-          <button type="button">+</button>
+          <button onClick={ addQuantity } type="button">+</button>
         </div>
       </div>
     </div>
