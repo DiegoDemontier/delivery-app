@@ -4,6 +4,7 @@ const path = require('path');
 const usersRoutes = require('./router/usersRoutes');
 const loginRoutes = require('./router/loginRoutes');
 const salesRoutes = require('./router/salesRoutes');
+const productsRoutes = require('./router/productsRoutes');
 const errorMiddleware = require('./middleware/errorHandle');
 
 const app = express();
@@ -13,6 +14,7 @@ app.use(cors());
 app.use('/user', usersRoutes);
 app.use('/login', loginRoutes);
 app.use('/sale', salesRoutes);
+app.use('/product', productsRoutes);
 
 app.use('/images', express.static(path.resolve(__dirname, '..', '..', 'public', 'images')));
 
