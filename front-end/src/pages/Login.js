@@ -13,8 +13,9 @@ function Login() {
     password: '',
   });
   const [messageErrorLogin, setMessageErrorLogin] = useState('none');
-
   const { requestLogin } = useContext(InfoContext);
+
+  const history = useHistory();
 
   const handleChangeLogin = ({ target: { value, name } }) => {
     setLogin({
@@ -26,10 +27,10 @@ function Login() {
   const handleClickLogin = async () => {
     const res = await requestLogin(login);
 
-    if (!res.token) setMessageErrorLogin('block');
-  };
+    if (res.token) history.push('customer/products');
 
-  const history = useHistory();
+    setMessageErrorLogin('block');
+  };
 
   const emailValidation = (email) => {
     const regexValidation = /\S+@\S+\.\S+/;
@@ -41,8 +42,6 @@ function Login() {
 
   const buttonStatus = useMemo(() => !emailValidation(login.email)
     || !passwordValidation(login.password), [login]);
-
-  console.log(login);
 
   return (
     <div className="card-container">
