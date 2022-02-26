@@ -10,7 +10,7 @@ function Table() {
   const { products } = useContext(InfoContext);
 
   return (
-    <table className='table-base'>
+    <table className='table'>
       <thead>
         <tr> {
             title.map(item => <th>{ item }</th>)
