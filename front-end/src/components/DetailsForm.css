@@ -1,0 +1,39 @@
+.details-form {
+  display: flex;
+  justify-content: space-between
+}
+
+.form-input {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+.big {
+  flex-grow: 3;
+}
+
+.input-field {
+  height: 45px;
+  margin-top: 10px;
+  background-color: white;
+  border: 1px darkgrey solid;
+  border-radius: 3px;
+  margin-bottom: 15px;
+  padding: 5px;
+}
+
+.details-label {
+  color: #584c4c;
+}
+
+.finalizar-pedido {
+  background-color: #036B52;
+  border-radius: 3px;
+  color: white;
+  margin: 20px auto;
+  padding: 15px 40px;
+  display: block;
+}

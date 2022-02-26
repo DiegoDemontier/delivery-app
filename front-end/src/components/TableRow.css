@@ -1,0 +1,28 @@
+.light-blue-row {
+  background-color: #F2FFFC;
+}
+
+.remover {
+  width: 100%;
+  height: 100%;
+}
+
+.green-row {
+  background-color: #2FC18C;
+  width: 20%;
+}
+
+.dark-green-row {
+  background-color: #036B52;
+  width: 50%;
+}
+
+.purple-row {
+  background-color: #421981;
+  width: 20%;
+}
+
+.blue-row {
+  background-color: #056CF9;
+  width: 10%;
+}

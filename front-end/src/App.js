@@ -6,6 +6,7 @@ import InfoProvider from './context/infoProvider';
 import Login from './pages/Login';
 import Cadastro from './pages/Cadastro';
 import CustomerProducts from './pages/CustomerProducts';
+import CustomerCheckout from './pages/CustomerCheckout';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route exact path="/"><Redirect to="/login" /></Route>
           <Route path="/register" component={ Cadastro } />
           <Route path="/customer/products" component={ CustomerProducts } />
+          <Route path="/customer/checkout" component={ CustomerCheckout } />
         </Switch>
       </InfoProvider>
 
