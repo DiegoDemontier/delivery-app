@@ -1,0 +1,14 @@
+.btn-products {
+  background: rgb(3, 109, 85);
+  border-radius: 10px;
+  bottom: 0;
+  color: white;
+  cursor: pointer;
+  font-size: 36px;
+  font-weight: 700;
+  height: 79px;
+  margin: 20px;
+  position: fixed;
+  right: 0;
+  width: 445px;
+}

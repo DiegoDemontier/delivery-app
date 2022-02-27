@@ -1,12 +1,13 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 import ProductCard from '../components/ProductCard';
 import InfoContext from '../context/infoContext';
+import Button from '../components/Button';
 import './CustomerProducts.css';
 
 function CustomerProducts() {
   const { requestAllProducts } = useContext(InfoContext);
   const [arrayProducts, setArrayProducts] = useState([]);
+  const buttonState = false;
 
   useEffect(() => {
     const response = async () => {
@@ -30,11 +31,14 @@ function CustomerProducts() {
           </div>
         ))}
       </div>
-      <Link to="/">
-        <div className="btn-products">
-          <span>Ver Carrinho: R$ 2.000</span>
-        </div>
-      </Link>
+      <Button
+        text="Ver Carrinho: R$ 2.000"
+        buttonClasse="btn-products"
+        buttonDatatestid="customer_products__button-cart"
+        spanDatatestid="customer_products__checkout-bottom-value"
+        buttonState={ buttonState }
+        handleClick={ () => console.log('Clik') }
+      />
     </div>
   );
 }
