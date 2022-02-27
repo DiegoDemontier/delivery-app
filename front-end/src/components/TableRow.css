@@ -1,0 +1,34 @@
+.items td {
+  padding: 5px;
+}
+
+.light-blue-row {
+  background-color: #d0e7e2;
+}
+
+.remover {
+  background-color: transparent;
+  height: 100%;
+  width: 100%;
+}
+
+.green-row {
+  background-color: #2fc18c;
+}
+
+.dark-green-row {
+  background-color: #036b52;
+}
+
+.purple-row {
+  background-color: #421981;
+}
+
+.blue-row {
+  background-color: #056cf9;
+}
+
+.center-white {
+  color: white;
+  text-align: center;
+}

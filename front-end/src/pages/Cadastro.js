@@ -66,6 +66,8 @@ function Cadastro() {
             inputPlaceholder="Seu nome"
             name="name"
             type="text"
+            labeltClass="label"
+            inputClass="input"
             value={ register.name }
             datatestid="common_register__input-name"
             handleChange={ handleChangeRegister }
@@ -75,6 +77,8 @@ function Cadastro() {
             inputPlaceholder="seu-email@site.com.br"
             name="email"
             type="email"
+            labeltClass="label"
+            inputClass="input"
             value={ register.email }
             datatestid="common_register__input-email"
             handleChange={ handleChangeRegister }
@@ -84,6 +88,8 @@ function Cadastro() {
             inputPlaceholder="***************"
             name="password"
             type="password"
+            labeltClass="label"
+            inputClass="input"
             value={ register.password }
             datatestid="common_register__input-password"
             handleChange={ handleChangeRegister }

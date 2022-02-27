@@ -8,10 +8,12 @@ function Input({ labelName,
   type,
   datatestid,
   handleChange,
-  value }) {
+  value,
+  inputClass,
+  labelClass }) {
   return (
     <>
-      <label htmlFor={ name } className="label">
+      <label htmlFor={ name } className={ labelClass }>
         { labelName }
       </label>
       <input
@@ -19,7 +21,7 @@ function Input({ labelName,
         placeholder={ inputPlaceholder }
         name={ name }
         value={ value }
-        className="input"
+        className={ inputClass }
         data-testid={ datatestid }
         onChange={ handleChange }
       />
@@ -31,6 +33,8 @@ export default Input;
 
 Input.propTypes = {
   labelName: PropTypes.string.isRequired,
+  inputClass: PropTypes.string.isRequired,
+  labelClass: PropTypes.string.isRequired,
   inputPlaceholder: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
