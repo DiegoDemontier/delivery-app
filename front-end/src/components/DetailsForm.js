@@ -21,7 +21,7 @@ function DetailsForm() {
     <form>
       <div className="details-form">
         <div className="form-input">
-          <label htmlFor="seller" className="details-label" onChange={ handleChangeForm }>
+          <label htmlFor="seller" className="details-label">
             P. Vendedora Responsável:
           </label>
           <select
@@ -29,6 +29,7 @@ function DetailsForm() {
             id="seller"
             className="input-field"
             defaultValue="Fulana Pereira"
+            onChange={ handleChangeForm }
           >
             <option value="Fulana Pereira">Fulana Pereira</option>
           </select>
@@ -67,7 +68,7 @@ function DetailsForm() {
       <button
         className="finalizar-pedido"
         type="button"
-        onClick={() => history.push('/customer/orders')}
+        onClick={ () => history.push('/customer/orders') }
       >
         FINALIZAR PEDIDO
       </button>

@@ -5,7 +5,12 @@ import PropTypes from 'prop-types';
 function TableRow({ index, name, quantity, price }) {
   return (
     <tr className="items">
-      <td className="green-row">{index}</td>
+      <td
+        className="green-row"
+        data-testid="customer_checkout__element-order-table-item-number"
+      >
+        {index}
+      </td>
       <td
         data-testid="customer_checkout__element-order-table-name-<index>"
         className="light-blue-row"

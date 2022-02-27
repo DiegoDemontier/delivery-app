@@ -14,7 +14,6 @@ function CustomerCheckout() {
       <NavBar user={ infoUser.name } />
       <h4
         className="title"
-        data-testid="customer_products__element-card-title"
       >
         Finalizar Pedido
       </h4>
