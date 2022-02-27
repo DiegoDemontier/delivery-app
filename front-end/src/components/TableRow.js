@@ -1,37 +1,50 @@
 import React from 'react';
 import './TableRow.css';
+import PropTypes from 'prop-types';
 
-function TableRow({index, name, quantity, price}) {
+function TableRow({ index, name, quantity, price }) {
   return (
-        <tr className='items'>
-          <td className='green-row'>{index}</td>
-          <td data-testid="customer_checkout__element-order-table-name-<index>" className="light-blue-row">
-            {name}
-          </td>
-          <td data-testid="customer_checkout__element-order-table-quantity-<index>" className='dark-green-row center-white'>
-            {quantity}
-          </td>
-          <td data-testid="customer_checkout__element-order-table-unit-price-<index>" className='purple-row center-white'>
-            {price}
-          </td>
-          <td data-testid="customer_checkout__element-order-table-sub-total-<index>"className='blue-row center-white'>
-            { quantity * price}
-          </td>
-          <td data-testid="customer_checkout__element-order-table-remove-<index>" className='green-row' >
-            <button className='remover center-white' >Remover</button>
-          </td>
-        </tr>
+    <tr className="items">
+      <td className="green-row">{index}</td>
+      <td
+        data-testid="customer_checkout__element-order-table-name-<index>"
+        className="light-blue-row"
+      >
+        {name}
+      </td>
+      <td
+        data-testid="customer_checkout__element-order-table-quantity-<index>"
+        className="dark-green-row center-white"
+      >
+        {quantity}
+      </td>
+      <td
+        data-testid="customer_checkout__element-order-table-unit-price-<index>"
+        className="purple-row center-white"
+      >
+        {price}
+      </td>
+      <td
+        data-testid="customer_checkout__element-order-table-sub-total-<index>"
+        className="blue-row center-white"
+      >
+        { quantity * price}
+      </td>
+      <td
+        data-testid="customer_checkout__element-order-table-remove-<index>"
+        className="green-row"
+      >
+        <button className="remover center-white" type="button">Remover</button>
+      </td>
+    </tr>
   );
 }
 
-export default TableRow;
+TableRow.propTypes = {
+  index: PropTypes.number.isRequired,
+  name: PropTypes.string.isRequired,
+  quantity: PropTypes.number.isRequired,
+  price: PropTypes.number.isRequired,
+};
 
-// Input.propTypes = {
-//   labelName: PropTypes.string.isRequired,
-//   inputPlaceholder: PropTypes.string.isRequired,
-//   name: PropTypes.string.isRequired,
-//   type: PropTypes.string.isRequired,
-//   datatestid: PropTypes.string.isRequired,
-//   handleChange: PropTypes.func.isRequired,
-//   value: PropTypes.string.isRequired,
-// };
+export default TableRow;

@@ -1,46 +1,42 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import InfoContext from './infoContext';
 
-
 function InfoProvider({ children }) {
+  const productList = [
+    {
+      name: 'Cerveja Stella 250mil',
+      quantity: 3,
+      price: 3.50,
+    },
+    {
+      name: 'Cerveja Skol Latão 450ml',
+      quantity: 4,
+      price: 4.10,
+    },
+    {
+      name: 'Salgadinho Torcida Churrasco',
+      quantity: 1,
+      price: 1.56,
+    },
+  ];
 
+  const [infoUser, setInfoUser] = useState({ name: 'Fulando' });
+  const [products, setProducts] = useState(productList);
+  const [totalValue, setTotalValue] = useState(0);
 
-const productList = [
-  {
-    name: 'Cerveja Stella 250mil',
-    quantity: 3,
-    price: 3.50
-  },
-  {
-    name: 'Cerveja Skol Latão 450ml',
-    quantity: 4,
-    price: 4.10
-  },
-  {
-    name: 'Salgadinho Torcida Churrasco',
-    quantity: 1,
-    price: 1.56
-  },
-];
+  useEffect(() => {
+    const total = products.reduce((acc, curr) => {
+      const subtotal = curr.price * curr.quantity;
+      const totalSum = acc + subtotal;
+      return totalSum;
+    }, 0);
 
-const [infoUser, setInfoUser] = useState({name: 'Fulando'});
-const [products, setProducts] = useState(productList);
-const [totalValue, setTotalValue] = useState(0);
+    console.log('--------total reduce', total);
 
-useEffect(()=> {
-  const total = products.reduce((acc, curr) => {
-    const subtotal = curr.price * curr.quantity;
-    const total = acc + subtotal;
-    return total;
-  }, 0);
-
-  console.log('--------total reduce', total);
-
-  setTotalValue(total);
-  
-}, []);
+    setTotalValue(total);
+  }, [products]);
 
   const requestLogin = async ({ email, password }) => {
     const getInfoLogin = await axios
@@ -74,6 +70,7 @@ useEffect(()=> {
     infoUser,
     products,
     totalValue,
+    setProducts,
   };
 
   return (

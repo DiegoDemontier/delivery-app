@@ -1,47 +1,42 @@
 import React, { useContext } from 'react';
 import TableRow from './TableRow';
 import InfoContext from '../context/infoContext';
-import './Table.css'
-// import PropTypes from 'prop-types';
+import './Table.css';
 
-const title = ['Item', 'Descrição', 'Quantidade', 'ValorUnitário', 'Sub-total', 'Remover Item'];
+const title = [
+  'Item',
+  'Descrição',
+  'Quantidade',
+  'ValorUnitário',
+  'Sub-total',
+  'Remover Item'];
 
 function Table() {
   const { products } = useContext(InfoContext);
 
   return (
-    <table className='table'>
+    <table className="table">
       <thead>
-        <tr> {
-            title.map(item => <th>{ item }</th>)
+        <tr>
+          {
+            title.map((item, index) => <th key={ index }>{ item }</th>)
           }
         </tr>
       </thead>
       <tbody>
-            {
-              products.map(({name, quantity, price}, index) => 
-                <TableRow
-                name={name}
-                quantity={quantity}
-                price={price}
-                index={index}
-                />
-              )
-            }
+        {
+          products.map(({ name, quantity, price }, index) => (<TableRow
+            key={ index }
+            name={ name }
+            quantity={ quantity }
+            price={ price }
+            index={ index }
+          />
+          ))
+        }
       </tbody>
-      
     </table>
   );
 }
 
 export default Table;
-
-// Input.propTypes = {
-//   labelName: PropTypes.string.isRequired,
-//   inputPlaceholder: PropTypes.string.isRequired,
-//   name: PropTypes.string.isRequired,
-//   type: PropTypes.string.isRequired,
-//   datatestid: PropTypes.string.isRequired,
-//   handleChange: PropTypes.func.isRequired,
-//   value: PropTypes.string.isRequired,
-// };

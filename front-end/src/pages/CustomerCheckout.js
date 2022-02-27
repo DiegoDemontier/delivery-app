@@ -11,13 +11,13 @@ function CustomerCheckout() {
 
   return (
     <div>
-      <NavBar user={infoUser.name}/>
-      <h4 className='title'>Finalizar Pedido</h4>
-      <div className='table-container'>
-        <Tabele/>
+      <NavBar user={ infoUser.name } />
+      <h4 className="title">Finalizar Pedido</h4>
+      <div className="table-container">
+        <Tabele />
         <TotalValue value={ totalValue.toFixed(2) } />
       </div>
-      <h4 className='title'>Detalhes e Endereço para Entrega</h4>
+      <h4 className="title">Detalhes e Endereço para Entrega</h4>
       <div className="table-container">
         <DetailsForm />
       </div>
