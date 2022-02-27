@@ -1,0 +1,12 @@
+.table-container {
+  border: 1px solid grey;
+  margin: 10px auto;
+  padding-top: 10px;
+  position: relative;
+  width: 70%;
+}
+
+.title {
+  margin: 10px auto;
+  width: 70%;
+}

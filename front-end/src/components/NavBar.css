@@ -1,0 +1,33 @@
+.navbar {
+  color: white;
+  display: flex;
+  flex-direction: row;
+  height: 50px;
+  text-align: center;
+  width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.green {
+  background-color: #2fc18c;
+  width: 20%;
+}
+
+.dark-green {
+  background-color: #036b52;
+  width: 50%;
+}
+
+.purple {
+  background-color: #421981;
+  width: 20%;
+}
+
+.blue {
+  background-color: #056cf9;
+  width: 10%;
+}
