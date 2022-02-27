@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import './DetailsForm.css';
+import Input from './Input';
+import SelectOptions from './SelectOptions';
 
 function DetailsForm() {
   const history = useHistory();
@@ -21,53 +23,46 @@ function DetailsForm() {
     <form>
       <div className="details-form">
         <div className="form-input">
-          <label htmlFor="seller" className="details-label" onChange={ handleChangeForm }>
-            P. Vendedora Responsável:
-          </label>
-          <select
+          <SelectOptions
+            labelName="P. Vendedora Responsável:"
             name="seller"
-            id="seller"
-            className="input-field"
-            defaultValue="Fulana Pereira"
-          >
-            <option value="Fulana Pereira">Fulana Pereira</option>
-          </select>
+            datatestid="customer_checkout__select-seller"
+            handleChange="handleChangeForm"
+            selectClass="input-field"
+            labelClass="details-label"
+          />
         </div>
         <div className="form-input big">
-          <label htmlFor="adress" className="details-label">
-            Endereço
-          </label>
-          <input
-            type="text"
-            placeholder="Travessa Terceira da Castanheira, Bairro Muruci"
+          <Input
+            labelName="Endereço"
+            inputPlaceholder="Travessa Terceira da Castanheira, Bairro Muruci"
             name="adress"
-            id="adress"
+            type="text"
+            labelClass="details-label"
+            inputClass="input-field"
             value={ FormData.adress }
-            data-testid="customer_checkout__input-address"
-            onChange={ handleChangeForm }
-            className="input-field"
+            datatestid="customer_checkout__input-address"
+            handleChange={ handleChangeForm }
           />
         </div>
         <div className="form-input">
-          <label htmlFor="number" className="details-label">
-            Número
-          </label>
-          <input
-            type="text"
-            placeholder="198"
+          <Input
+            labelName="Número"
+            inputPlaceholder="198"
             name="number"
-            id="number"
+            type="text"
+            labelClass="details-label"
+            inputClass="input-field"
             value={ FormData.number }
-            data-testid="customer_checkout__input-addressNumber"
-            onChange={ handleChangeForm }
-            className="input-field"
+            datatestid="customer_checkout__input-addressNumber"
+            handleChange={ handleChangeForm }
           />
         </div>
       </div>
       <button
         className="finalizar-pedido"
         type="button"
-        onClick={() => history.push('/customer/orders')}
+        onClick={ () => history.push('/customer/orders') }
       >
         FINALIZAR PEDIDO
       </button>

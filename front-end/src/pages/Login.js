@@ -53,6 +53,8 @@ function Login() {
             inputPlaceholder="email@trybeer.com.br"
             name="email"
             type="text"
+            inputClass="input"
+            labelClass="label"
             value={ login.email }
             datatestid="common_login__input-email"
             handleChange={ handleChangeLogin }
@@ -62,6 +64,8 @@ function Login() {
             inputPlaceholder="***************"
             name="password"
             type="password"
+            inputClass="input"
+            labelClass="label"
             value={ login.password }
             datatestid="common_login__input-password"
             handleChange={ handleChangeLogin }
