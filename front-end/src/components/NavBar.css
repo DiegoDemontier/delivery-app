@@ -4,7 +4,7 @@
   flex-direction: row;
   height: 50px;
   text-align: center;
-  width: 100%;  
+  width: 100%;
 }
 
 a {
@@ -13,12 +13,12 @@ a {
 }
 
 .green {
-  background-color: #2FC18C;
+  background-color: #2fc18c;
   width: 20%;
 }
 
 .dark-green {
-  background-color: #036B52;
+  background-color: #036b52;
   width: 50%;
 }
 
@@ -28,6 +28,6 @@ a {
 }
 
 .blue {
-  background-color: #056CF9;
+  background-color: #056cf9;
   width: 10%;
 }
