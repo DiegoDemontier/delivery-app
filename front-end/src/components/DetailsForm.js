@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import './DetailsForm.css';
 
 function DetailsForm() {
+  const history = useHistory();
   const [formData, setFormData] = useState({
     seller: '',
     adress: '',
@@ -62,7 +64,13 @@ function DetailsForm() {
           />
         </div>
       </div>
-      <button className="finalizar-pedido" type="button">FINALIZAR PEDIDO</button>
+      <button
+        className="finalizar-pedido"
+        type="button"
+        onClick={() => history.push('/customer/orders')}
+      >
+        FINALIZAR PEDIDO
+      </button>
     </form>
   );
 }

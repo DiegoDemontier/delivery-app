@@ -12,7 +12,12 @@ function CustomerCheckout() {
   return (
     <div>
       <NavBar user={ infoUser.name } />
-      <h4 className="title">Finalizar Pedido</h4>
+      <h4
+        className="title"
+        data-testid="customer_products__element-card-title"
+      >
+        Finalizar Pedido
+      </h4>
       <div className="table-container">
         <Tabele />
         <TotalValue value={ totalValue.toFixed(2) } />

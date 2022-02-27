@@ -6,10 +6,30 @@ import PropTypes from 'prop-types';
 function NavBar({ user }) {
   return (
     <nav className="navbar">
-      <span className="green"><Link to="/">PRODUTOS</Link></span>
-      <span className="dark-green"><Link to="/">MEUS PEDIDOS</Link></span>
-      <span className="purple">{user}</span>
-      <span className="blue"><Link to="/">Sair</Link></span>
+      <span
+        className="green"
+        data-testid="customer_products__element-navbar-link-products"
+      >
+        <Link to="/">PRODUTOS</Link>
+      </span>
+      <span
+        className="dark-green"
+        datat-testid="customer_products__element-navbar-link-orders"
+      >
+        <Link to="/">MEUS PEDIDOS</Link>
+      </span>
+      <span
+        className="purple"
+        data-testid="customer_products__element-navbar-user-full-name"
+      >
+        {user}
+      </span>
+      <span
+        className="blue"
+        data-testid="customer_products__element-navbar-link-logout"
+      >
+        <Link to="/">Sair</Link>
+      </span>
     </nav>
   );
 }

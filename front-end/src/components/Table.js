@@ -26,7 +26,7 @@ function Table() {
       <tbody>
         {
           products.map(({ name, quantity, price }, index) => (<TableRow
-            key={ index }
+            key={ `element-order-table-name-${index}` }
             name={ name }
             quantity={ quantity }
             price={ price }
