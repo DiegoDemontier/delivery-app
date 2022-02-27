@@ -1,9 +1,7 @@
 .product-card {
   border: 4px solid rgba(234, 241, 239, 1);
   height: 486px;
-  left: 100px;
   position: relative;
-  top: 100px;
   width: 378px;
 }
 
@@ -22,7 +20,6 @@
 }
 
 .product-card img {
-  background-color: rgb(4, 0, 255);
   display: block;
   height: 357px;
   width: 100%;
@@ -47,6 +44,7 @@
 .footer-product-card div button {
   background: rgb(3, 109, 85);
   border-radius: 10px 0 0 10px;
+  cursor: pointer;
   height: 51px;
   width: 49px;
 }
@@ -69,4 +67,8 @@
   height: 51px;
   justify-content: center;
   width: 62px;
+}
+
+.product-card .footer-product-card img {
+  height: 40px;
 }

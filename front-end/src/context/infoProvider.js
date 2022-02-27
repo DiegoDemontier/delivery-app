@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import InfoContext from './infoContext';
 
 function InfoProvider({ children }) {
+  const [productsInCart, setProductsInCart] = useState([]);
   const REQUEST_FAILED = 'Falha na requisiçao';
 
   const requestLogin = async ({ email, password }) => {
@@ -40,6 +41,8 @@ function InfoProvider({ children }) {
     requestLogin,
     requestRegister,
     requestAllProducts,
+    productsInCart,
+    setProductsInCart,
   };
 
   return (

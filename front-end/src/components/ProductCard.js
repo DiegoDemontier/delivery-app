@@ -1,35 +1,84 @@
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useReducer } from 'react';
+import PropTypes from 'prop-types';
+import InfoContext from '../context/infoContext';
 import './ProductCard.css';
+import remove from '../images/remove.svg';
+import add from '../images/add.svg';
 
-function ProductCard({ name, price, urlImage }) {
-  const [quantity, setQuantity] = useState(0);
-
-  const addQuantity = () => {
-    setQuantity((prev) => (
-      prev + 1
-    ));
+function ProductCard({ productId, name, price, urlImage }) {
+  const { setProductsInCart } = useContext(InfoContext);
+  const initialState = {
+    productId,
+    name,
+    price,
+    quantity: 0,
   };
 
-  const removeQuantity = () => {
-    if (quantity > 0) {
-      setQuantity((prev) => (
-        prev - 1
+  function reducer(state, action) {
+    switch (action.type) {
+    case 'increment':
+      return { ...state, quantity: state.quantity + 1 };
+    case 'decrement':
+      return { ...state,
+        quantity: state.quantity > 0 ? state.quantity - 1 : 0 };
+    default:
+      return state;
+    }
+  }
+  const [state, dispatch] = useReducer(reducer, initialState);
+
+  useEffect(() => {
+    if (state.quantity > 0) {
+      setProductsInCart((prev) => (
+        [...prev.filter((product) => product.productId !== productId), state]
+      ));
+    } else {
+      setProductsInCart((prev) => (
+        [...prev.filter((product) => product.productId !== productId)]
       ));
     }
-  };
+  }, [setProductsInCart, state, productId]);
 
   return (
     <div className="product-card">
-      <span>{`R$ ${price}`}</span>
-      <img src={ urlImage } alt="Figura do produto" />
+      <span
+        data-testid="customer_products__element-card-price"
+      >
+        {`R$ ${price}`}
+      </span>
+      <img
+        data-testid="customer_products__img-card-bg-image"
+        src={ urlImage }
+        alt="Figura do produto"
+      />
       <div className="footer-product-card">
-        <span>{ name }</span>
+        <span
+          data-testid="customer_products__element-card-title"
+        >
+          { name }
+        </span>
         <div>
-          <button onClick={ removeQuantity } type="button">-</button>
+          <button
+            data-testid="customer_products__button-card-rm-item"
+            onClick={ () => dispatch({ type: 'decrement' }) }
+            type="button"
+          >
+            <img src={ remove } alt="" />
+          </button>
           <div>
-            <span>{ quantity }</span>
+            <span
+              data-testid="customer_products__input-card-quantity"
+            >
+              { state.quantity }
+            </span>
           </div>
-          <button onClick={ addQuantity } type="button">+</button>
+          <button
+            data-testid="customer_products__button-card-add-item"
+            onClick={ () => dispatch({ type: 'increment' }) }
+            type="button"
+          >
+            <img src={ add } alt="" />
+          </button>
         </div>
       </div>
     </div>
@@ -37,3 +86,9 @@ function ProductCard({ name, price, urlImage }) {
 }
 
 export default ProductCard;
+ProductCard.propTypes = {
+  name: PropTypes.string.isRequired,
+  price: PropTypes.string.isRequired,
+  productId: PropTypes.number.isRequired,
+  urlImage: PropTypes.string.isRequired,
+};
