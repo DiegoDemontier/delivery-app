@@ -10,13 +10,13 @@ function NavBar({ user }) {
         className="green"
         data-testid="customer_products__element-navbar-link-products"
       >
-        <Link to="/">PRODUTOS</Link>
+        <Link to="/customer/products">PRODUTOS</Link>
       </span>
       <span
         className="dark-green"
         datat-testid="customer_products__element-navbar-link-orders"
       >
-        <Link to="/">MEUS PEDIDOS</Link>
+        <Link to="/customer/orders">MEUS PEDIDOS</Link>
       </span>
       <span
         className="purple"
