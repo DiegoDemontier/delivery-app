@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import ProductCard from '../components/ProductCard';
 import InfoContext from '../context/infoContext';
 import Button from '../components/Button';
@@ -31,14 +32,16 @@ function CustomerProducts() {
           </div>
         ))}
       </div>
-      <Button
-        text="Ver Carrinho: R$ 2.000"
-        buttonClasse="btn-products"
-        buttonDatatestid="customer_products__button-cart"
-        spanDatatestid="customer_products__checkout-bottom-value"
-        buttonState={ buttonState }
-        handleClick={ () => console.log('Clik') }
-      />
+      <Link to="/customer/checkout">
+        <Button
+          text="Ver Carrinho: R$ 2.000"
+          buttonClasse="btn-products"
+          buttonDatatestid="customer_products__button-cart"
+          spanDatatestid="customer_products__checkout-bottom-value"
+          buttonState={ buttonState }
+          handleClick={ () => console.log('Clik') }
+        />
+      </Link>
     </div>
   );
 }
