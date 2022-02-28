@@ -26,6 +26,7 @@ export default Button;
 
 Button.defaultProps = {
   spanDatatestid: '',
+  buttonState: false,
 };
 
 Button.propTypes = {
@@ -33,6 +34,6 @@ Button.propTypes = {
   buttonClasse: PropTypes.string.isRequired,
   buttonDatatestid: PropTypes.string.isRequired,
   spanDatatestid: PropTypes.string,
-  buttonState: PropTypes.bool.isRequired,
+  buttonState: PropTypes.bool,
   handleClick: PropTypes.func.isRequired,
 };

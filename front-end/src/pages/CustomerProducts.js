@@ -1,14 +1,15 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import ProductCard from '../components/ProductCard';
 import InfoContext from '../context/infoContext';
 import Button from '../components/Button';
+import NavBar from '../components/NavBar';
 import './CustomerProducts.css';
 
 function CustomerProducts() {
   const { requestAllProducts } = useContext(InfoContext);
   const [arrayProducts, setArrayProducts] = useState([]);
-  const buttonState = false;
+  const history = useHistory();
 
   useEffect(() => {
     const response = async () => {
@@ -19,7 +20,10 @@ function CustomerProducts() {
 
   return (
     <div>
-      <header>header</header>
+      <NavBar
+        user="Diego"
+        productClasse="green"
+      />
       <div className="products-container">
         {arrayProducts.map((product) => (
           <div key={ product.id }>
@@ -32,16 +36,13 @@ function CustomerProducts() {
           </div>
         ))}
       </div>
-      <Link to="/customer/checkout">
-        <Button
-          text="Ver Carrinho: R$ 2.000"
-          buttonClasse="btn-products"
-          buttonDatatestid="customer_products__button-cart"
-          spanDatatestid="customer_products__checkout-bottom-value"
-          buttonState={ buttonState }
-          handleClick={ () => console.log('Clik') }
-        />
-      </Link>
+      <Button
+        text="Ver Carrinho: R$ 2.000"
+        buttonClasse="btn-products"
+        buttonDatatestid="customer_products__button-cart"
+        spanDatatestid="customer_products__checkout-bottom-value"
+        handleClick={ () => history.push('/customer/checkout') }
+      />
     </div>
   );
 }

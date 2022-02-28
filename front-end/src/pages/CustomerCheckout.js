@@ -11,7 +11,10 @@ function CustomerCheckout() {
 
   return (
     <div>
-      <NavBar user={ infoUser.name } />
+      <NavBar
+        user={ infoUser.name }
+        productClasse="green"
+      />
       <h4
         className="title"
       >

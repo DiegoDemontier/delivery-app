@@ -42,24 +42,24 @@ function ProductCard({ productId, name, price, urlImage }) {
   return (
     <div className="product-card">
       <span
-        data-testid="customer_products__element-card-price"
+        data-testid={ `customer_products__element-card-price-${productId}` }
       >
         {`R$ ${price}`}
       </span>
       <img
-        data-testid="customer_products__img-card-bg-image"
+        data-testid={ `customer_products__img-card-bg-image-${productId}` }
         src={ urlImage }
         alt="Figura do produto"
       />
       <div className="footer-product-card">
         <span
-          data-testid="customer_products__element-card-title"
+          data-testid={ `customer_products__element-card-title-${productId}` }
         >
           { name }
         </span>
         <div>
           <button
-            data-testid="customer_products__button-card-rm-item"
+            data-testid={ `customer_products__button-card-rm-item-${productId}` }
             onClick={ () => dispatch({ type: 'decrement' }) }
             type="button"
           >
@@ -67,13 +67,13 @@ function ProductCard({ productId, name, price, urlImage }) {
           </button>
           <div>
             <span
-              data-testid="customer_products__input-card-quantity"
+              data-testid={ `customer_products__input-card-quantity-${productId}` }
             >
               { state.quantity }
             </span>
           </div>
           <button
-            data-testid="customer_products__button-card-add-item"
+            data-testid={ `customer_products__button-card-add-item-${productId}` }
             onClick={ () => dispatch({ type: 'increment' }) }
             type="button"
           >

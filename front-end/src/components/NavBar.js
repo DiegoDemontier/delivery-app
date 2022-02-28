@@ -1,35 +1,46 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import './NavBar.css';
+import { Link, useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import Button from './Button';
+import './NavBar.css';
 
-function NavBar({ user }) {
+function NavBar({ user, productClasse, ordersClasse }) {
+  const history = useHistory();
+
   return (
     <nav className="navbar">
-      <span
-        className="green"
-        data-testid="customer_products__element-navbar-link-products"
-      >
-        <Link to="/customer/products">PRODUTOS</Link>
-      </span>
-      <span
-        className="dark-green"
-        datat-testid="customer_products__element-navbar-link-orders"
-      >
-        <Link to="/customer/orders">MEUS PEDIDOS</Link>
-      </span>
-      <span
-        className="purple"
-        data-testid="customer_products__element-navbar-user-full-name"
-      >
-        {user}
-      </span>
-      <span
-        className="blue"
-        data-testid="customer_products__element-navbar-link-logout"
-      >
-        <Link to="/">Sair</Link>
-      </span>
+      <div>
+        <Button
+          buttonClasse={ `product-nav ${productClasse}` }
+          text="PRODUTOS"
+          buttonDatatestid="customer_products__element-navbar-link-products"
+          handleClick={ () => history.push('/customer/products') }
+        />
+        <Button
+          buttonClasse={ `product-nav ${ordersClasse}` }
+          text="MEUS PEDIDOS"
+          buttonDatatestid="customer_products__element-navbar-link-orders"
+          handleClick={ () => history.push('/customer/ordes') }
+        />
+      </div>
+      <div className="test">
+        <div className="purple">
+          <span
+            data-testid="customer_products__element-navbar-user-full-name"
+          >
+            {user}
+          </span>
+        </div>
+        <Link to="/">
+          <div className="blue">
+            <span
+              data-testid="customer_products__element-navbar-link-logout"
+            >
+              Sair
+            </span>
+          </div>
+        </Link>
+      </div>
     </nav>
   );
 }
