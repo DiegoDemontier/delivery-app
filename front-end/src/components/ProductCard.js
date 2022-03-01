@@ -8,20 +8,15 @@ import Input from './Input';
 
 function ProductCard({ productId, name, price, urlImage }) {
   const { setProductsInCart } = useContext(InfoContext);
-  const [quantity, setQuantity] = useState(0);
   const [initialState, setInitialState] = useState({
     productId,
     name,
     price,
-    quantity,
+    quantity: 0,
   });
 
   useEffect(() => {
-    setInitialState((prev) => ({ ...prev, quantity }));
-  }, [quantity]);
-
-  useEffect(() => {
-    if (quantity > 0) {
+    if (initialState.quantity > 0) {
       setProductsInCart((prev) => (
         [...prev.filter((product) => product.productId !== productId), initialState]
       ));
@@ -30,15 +25,19 @@ function ProductCard({ productId, name, price, urlImage }) {
         [...prev.filter((product) => product.productId !== productId)]
       ));
     }
-  }, [productId, initialState, quantity, setProductsInCart]);
+  }, [productId, initialState, setProductsInCart]);
 
   const increment = () => {
-    setQuantity((prev) => Number(prev) + 1);
+    let newQuantity = Number(initialState.quantity);
+    newQuantity += 1;
+    setInitialState((prev) => ({ ...prev, quantity: newQuantity }));
   };
 
   const decrement = () => {
-    if (quantity > 0) {
-      setQuantity((prev) => Number(prev) - 1);
+    if (initialState.quantity > 0) {
+      let newQuantity = Number(initialState.quantity);
+      newQuantity -= 1;
+      setInitialState((prev) => ({ ...prev, quantity: newQuantity }));
     }
   };
 
@@ -68,13 +67,16 @@ function ProductCard({ productId, name, price, urlImage }) {
         <div>
           <Input
             type="number"
-            value={ quantity }
+            value={ initialState.quantity }
             name="quantity"
             datatestid={ `customer_products__input-card-quantity-${productId}` }
             datatestidLabel={ `customer_products__element-card-title-${productId}` }
             inputPlaceholder="0"
             labelName={ name }
-            handleChange={ ({ target }) => setQuantity(target.value) }
+            handleChange={
+              ({ target }) => setInitialState((prev) => (
+                { ...prev, quantity: target.value }))
+            }
           />
         </div>
         <button
