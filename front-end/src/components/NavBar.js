@@ -47,8 +47,15 @@ function NavBar({ user, productClasse, ordersClasse }) {
   );
 }
 
+NavBar.defaultProps = {
+  productClasse: '',
+  ordersClasse: '',
+};
+
 NavBar.propTypes = {
   user: PropTypes.string.isRequired,
+  productClasse: PropTypes.string,
+  ordersClasse: PropTypes.string,
 };
 
 export default NavBar;
