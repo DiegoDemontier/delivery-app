@@ -9,9 +9,13 @@ import './CustomerProducts.css';
 function CustomerProducts() {
   const { requestAllProducts } = useContext(InfoContext);
   const [arrayProducts, setArrayProducts] = useState([]);
+  const [user, setUser] = useState({});
   const history = useHistory();
 
   useEffect(() => {
+    const getUser = localStorage.getItem('user');
+    setUser(JSON.parse(getUser));
+
     const response = async () => {
       setArrayProducts(await requestAllProducts());
     };
@@ -21,7 +25,7 @@ function CustomerProducts() {
   return (
     <div>
       <NavBar
-        user="Diego"
+        user={ user.name }
         productClasse="green"
       />
       <div className="products-container">

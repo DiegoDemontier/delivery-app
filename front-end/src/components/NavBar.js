@@ -1,11 +1,16 @@
 import React from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Button from './Button';
 import './NavBar.css';
 
 function NavBar({ user, productClasse, ordersClasse }) {
   const history = useHistory();
+
+  const handleClick = () => {
+    localStorage.removeItem('user');
+    history.push('/login');
+  };
 
   return (
     <nav className="navbar">
@@ -31,15 +36,12 @@ function NavBar({ user, productClasse, ordersClasse }) {
             {user}
           </span>
         </div>
-        <Link to="/">
-          <div className="blue">
-            <span
-              data-testid="customer_products__element-navbar-link-logout"
-            >
-              Sair
-            </span>
-          </div>
-        </Link>
+        <Button
+          buttonClasse="btn-logout"
+          text="SAIR"
+          buttonDatatestid="customer_products__element-navbar-link-logout"
+          handleClick={ handleClick }
+        />
       </div>
     </nav>
   );

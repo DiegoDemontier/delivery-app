@@ -41,16 +41,13 @@
   padding-right: 50px;
 }
 
-.navbar .blue {
-  align-items: center;
+.navbar .test .btn-logout {
   background-color: #056cf9;
   color: white;
-  display: flex;
+  cursor: pointer;
+  font-size: 36px;
+  font-weight: 400;
   height: 105px;
   padding-left: 50px;
   padding-right: 50px;
-}
-
-.navbar a {
-  text-decoration: none;
 }
