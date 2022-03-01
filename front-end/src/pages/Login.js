@@ -27,7 +27,10 @@ function Login() {
   const handleClickLogin = async () => {
     const res = await requestLogin(login);
 
-    if (res.token) history.replace('customer/products');
+    if (res.token) {
+      localStorage.setItem('user', JSON.stringify(res));
+      history.replace('customer/products');
+    }
 
     setMessageErrorLogin('block');
   };

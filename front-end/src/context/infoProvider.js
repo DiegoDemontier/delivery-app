@@ -5,7 +5,6 @@ import InfoContext from './infoContext';
 
 function InfoProvider({ children }) {
   const [productsInCart, setProductsInCart] = useState([]);
-  const [infoUser, setInfoUser] = useState({});
   const [totalValue, setTotalValue] = useState(0);
 
   const REQUEST_FAILED = 'Falha na requisiçao';
@@ -27,8 +26,6 @@ function InfoProvider({ children }) {
       .catch((err) => err.response);
 
     if (!getInfoLogin) return REQUEST_FAILED;
-    setInfoUser(getInfoLogin);
-    localStorage.setItem('user', JSON.stringify(getInfoLogin));
 
     return getInfoLogin;
   };
