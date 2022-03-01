@@ -7,15 +7,11 @@ import NavBar from '../components/NavBar';
 import './CustomerProducts.css';
 
 function CustomerProducts() {
-  const { requestAllProducts, totalValue } = useContext(InfoContext);
+  const { requestAllProducts, totalValue, infoUser } = useContext(InfoContext);
   const [arrayProducts, setArrayProducts] = useState([]);
-  const [user, setUser] = useState({});
   const history = useHistory();
 
   useEffect(() => {
-    const getUser = localStorage.getItem('user');
-    setUser(JSON.parse(getUser));
-
     const response = async () => {
       setArrayProducts(await requestAllProducts());
     };
@@ -25,7 +21,7 @@ function CustomerProducts() {
   return (
     <div>
       <NavBar
-        user={ user.name }
+        user={ infoUser.name }
         productClasse="green"
       />
       <div className="products-container">

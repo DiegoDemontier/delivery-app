@@ -5,6 +5,7 @@ import InfoContext from './infoContext';
 
 function InfoProvider({ children }) {
   const [productsInCart, setProductsInCart] = useState([]);
+  const [infoUser, setInfoUser] = useState({});
   const [totalValue, setTotalValue] = useState(0);
 
   const REQUEST_FAILED = 'Falha na requisiçao';
@@ -18,6 +19,11 @@ function InfoProvider({ children }) {
 
     setTotalValue(total);
   }, [productsInCart]);
+
+  useEffect(() => {
+    const getUser = localStorage.getItem('user');
+    setInfoUser(JSON.parse(getUser));
+  }, []);
 
   const requestLogin = async ({ email, password }) => {
     const getInfoLogin = await axios
@@ -55,6 +61,7 @@ function InfoProvider({ children }) {
     requestRegister,
     totalValue,
     requestAllProducts,
+    infoUser,
     productsInCart,
     setProductsInCart,
   };
