@@ -5,12 +5,14 @@
   width: 378px;
 }
 
-.product-card > span {
+.product-card .priceCard {
   background: rgba(242, 255, 252, 0.75);
   border-radius: 10px;
+  display: flex;
   font-size: 36px;
   font-weight: 700;
   height: 63px;
+  justify-content: space-evenly;
   left: 9px;
   padding-top: 8px;
   position: absolute;

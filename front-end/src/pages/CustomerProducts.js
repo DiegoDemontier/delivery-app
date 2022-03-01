@@ -37,7 +37,7 @@ function CustomerProducts() {
         ))}
       </div>
       <Button
-        text={ `Ver Carrinho: R$ ${totalValue.toFixed(2)}` }
+        text={ `Ver Carrinho: R$ ${totalValue.toFixed(2).replace('.', ',')}` }
         buttonClasse="btn-products"
         buttonDatatestid="customer_products__button-cart"
         spanDatatestid="customer_products__checkout-bottom-value"
