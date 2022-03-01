@@ -22,8 +22,6 @@ function Button({
   );
 }
 
-export default Button;
-
 Button.defaultProps = {
   spanDatatestid: '',
   buttonState: false,
@@ -37,3 +35,5 @@ Button.propTypes = {
   buttonState: PropTypes.bool,
   handleClick: PropTypes.func.isRequired,
 };
+
+export default Button;
