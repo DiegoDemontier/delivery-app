@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 import Card from '../components/Card';
 import './Login.css';
 import Input from '../components/Input';
-import GreenButton from '../components/GreenButton';
+import Button from '../components/Button';
 import InnerGreenButton from '../components/InnerGreenButton';
 import InfoContext from '../context/infoContext';
 
@@ -74,16 +74,18 @@ function Login() {
             datatestid="common_login__input-password"
             handleChange={ handleChangeLogin }
           />
-          <GreenButton
+          <Button
             text="LOGIN"
-            datatestid="common_login__button-login"
+            buttonDatatestid="common_login__button-login"
+            buttonClasse="green-button"
             buttonState={ buttonStatus }
             handleClick={ handleClickLogin }
           />
-          <InnerGreenButton
+          <Button
             text="Ainda não tenho conta"
-            datatestid="common_login__button-register"
-            gotoRegister={ () => history.push('/register') }
+            buttonDatatestid="common_login__button-register"
+            buttonClasse="inner-green-button"
+            handleClick={ () => history.push('/register') }
           />
           <p
             data-testid="common_login__element-invalid-email"

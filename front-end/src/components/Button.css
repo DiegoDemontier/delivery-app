@@ -9,3 +9,19 @@
   margin: 20px;
   width: 445px;
 }
+
+.green-button {
+  background-color: green;
+  border-radius: 3px;
+  color: white;
+  margin-bottom: 20px;
+  padding: 10px;
+}
+
+.inner-green-button {
+  background-color: rgba(255, 255, 255, 0);
+  border: 1px solid green;
+  border-radius: 3px;
+  color: green;
+  padding: 10px;
+}
