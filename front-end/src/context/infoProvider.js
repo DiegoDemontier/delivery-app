@@ -53,7 +53,6 @@ function InfoProvider({ children }) {
   const contextValues = {
     requestLogin,
     requestRegister,
-    infoUser,
     totalValue,
     requestAllProducts,
     productsInCart,
