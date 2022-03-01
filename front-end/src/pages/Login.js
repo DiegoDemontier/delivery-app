@@ -13,7 +13,7 @@ function Login() {
     password: '',
   });
   const [messageErrorLogin, setMessageErrorLogin] = useState('none');
-  const { requestLogin } = useContext(InfoContext);
+  const { requestLogin, setInfoUser } = useContext(InfoContext);
 
   const history = useHistory();
 
@@ -25,10 +25,11 @@ function Login() {
   };
 
   const handleClickLogin = async () => {
-    const res = await requestLogin(login);
+    const getUser = await requestLogin(login);
 
-    if (res.token) {
-      localStorage.setItem('user', JSON.stringify(res));
+    if (getUser.token) {
+      localStorage.setItem('user', JSON.stringify(getUser));
+      setInfoUser(getUser);
       history.replace('customer/products');
     }
 

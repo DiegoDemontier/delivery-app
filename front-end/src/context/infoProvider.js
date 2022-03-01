@@ -20,11 +20,6 @@ function InfoProvider({ children }) {
     setTotalValue(total);
   }, [productsInCart]);
 
-  useEffect(() => {
-    const getUser = localStorage.getItem('user');
-    setInfoUser(JSON.parse(getUser));
-  }, []);
-
   const requestLogin = async ({ email, password }) => {
     const getInfoLogin = await axios
       .post('http://localhost:3001/login', { email, password })
@@ -62,6 +57,7 @@ function InfoProvider({ children }) {
     totalValue,
     requestAllProducts,
     infoUser,
+    setInfoUser,
     productsInCart,
     setProductsInCart,
   };
