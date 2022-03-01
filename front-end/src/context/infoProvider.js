@@ -5,29 +5,10 @@ import InfoContext from './infoContext';
 
 function InfoProvider({ children }) {
   const [productsInCart, setProductsInCart] = useState([]);
-  const REQUEST_FAILED = 'Falha na requisiçao';
-
-  /* const productList = [
-    {
-      name: 'Cerveja Stella 250mil',
-      quantity: 3,
-      price: 3.50,
-    },
-    {
-      name: 'Cerveja Skol Latão 450ml',
-      quantity: 4,
-      price: 4.10,
-    },
-    {
-      name: 'Salgadinho Torcida Churrasco',
-      quantity: 1,
-      price: 1.56,
-    },
-  ]; */
-
-  const [infoUser, setInfoUser] = useState({ name: 'Fulando' });
-  /* const [products, setProducts] = useState(productList); */
+  const [infoUser, setInfoUser] = useState({});
   const [totalValue, setTotalValue] = useState(0);
+
+  const REQUEST_FAILED = 'Falha na requisiçao';
 
   useEffect(() => {
     const total = productsInCart.reduce((acc, curr) => {
@@ -46,11 +27,8 @@ function InfoProvider({ children }) {
       .catch((err) => err.response);
 
     if (!getInfoLogin) return REQUEST_FAILED;
-
-    setInfoUser({
-      ...infoUser,
-      getInfoLogin,
-    });
+    setInfoUser(getInfoLogin);
+    localStorage.setItem('user', JSON.stringify(getInfoLogin));
 
     return getInfoLogin;
   };

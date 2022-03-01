@@ -27,7 +27,7 @@ function Login() {
   const handleClickLogin = async () => {
     const res = await requestLogin(login);
 
-    if (res.token) history.push('customer/products');
+    if (res.token) history.replace('customer/products');
 
     setMessageErrorLogin('block');
   };
