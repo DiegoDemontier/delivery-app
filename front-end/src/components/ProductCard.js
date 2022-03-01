@@ -1,43 +1,46 @@
-import React, { useContext, useEffect, useReducer } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import InfoContext from '../context/infoContext';
 import './ProductCard.css';
 import remove from '../images/remove.svg';
 import add from '../images/add.svg';
+import Input from './Input';
 
 function ProductCard({ productId, name, price, urlImage }) {
   const { setProductsInCart } = useContext(InfoContext);
-  const initialState = {
+  const [quantity, setQuantity] = useState(0);
+  const [initialState, setInitialState] = useState({
     productId,
     name,
     price,
-    quantity: 0,
-  };
-
-  function reducer(state, action) {
-    switch (action.type) {
-    case 'increment':
-      return { ...state, quantity: state.quantity + 1 };
-    case 'decrement':
-      return { ...state,
-        quantity: state.quantity > 0 ? state.quantity - 1 : 0 };
-    default:
-      return state;
-    }
-  }
-  const [state, dispatch] = useReducer(reducer, initialState);
+    quantity,
+  });
 
   useEffect(() => {
-    if (state.quantity > 0) {
+    setInitialState((prev) => ({ ...prev, quantity }));
+  }, [quantity]);
+
+  useEffect(() => {
+    if (quantity > 0) {
       setProductsInCart((prev) => (
-        [...prev.filter((product) => product.productId !== productId), state]
+        [...prev.filter((product) => product.productId !== productId), initialState]
       ));
     } else {
       setProductsInCart((prev) => (
         [...prev.filter((product) => product.productId !== productId)]
       ));
     }
-  }, [setProductsInCart, state, productId]);
+  }, [productId, initialState, quantity, setProductsInCart]);
+
+  const increment = () => {
+    setQuantity((prev) => Number(prev) + 1);
+  };
+
+  const decrement = () => {
+    if (quantity > 0) {
+      setQuantity((prev) => Number(prev) - 1);
+    }
+  };
 
   return (
     <div className="product-card">
@@ -55,34 +58,32 @@ function ProductCard({ productId, name, price, urlImage }) {
         alt="Figura do produto"
       />
       <div className="footer-product-card">
-        <span
-          data-testid={ `customer_products__element-card-title-${productId}` }
+        <button
+          data-testid={ `customer_products__button-card-rm-item-${productId}` }
+          onClick={ decrement }
+          type="button"
         >
-          { name }
-        </span>
+          <img src={ remove } alt="" />
+        </button>
         <div>
-          <button
-            data-testid={ `customer_products__button-card-rm-item-${productId}` }
-            onClick={ () => dispatch({ type: 'decrement' }) }
-            type="button"
-          >
-            <img src={ remove } alt="" />
-          </button>
-          <div>
-            <span
-              data-testid={ `customer_products__input-card-quantity-${productId}` }
-            >
-              { state.quantity }
-            </span>
-          </div>
-          <button
-            data-testid={ `customer_products__button-card-add-item-${productId}` }
-            onClick={ () => dispatch({ type: 'increment' }) }
-            type="button"
-          >
-            <img src={ add } alt="" />
-          </button>
+          <Input
+            type="number"
+            value={ quantity }
+            name="quantity"
+            datatestid={ `customer_products__input-card-quantity-${productId}` }
+            datatestidLabel={ `customer_products__element-card-title-${productId}` }
+            inputPlaceholder="0"
+            labelName={ name }
+            handleChange={ ({ target }) => setQuantity(target.value) }
+          />
         </div>
+        <button
+          data-testid={ `customer_products__button-card-add-item-${productId}` }
+          onClick={ increment }
+          type="button"
+        >
+          <img src={ add } alt="" />
+        </button>
       </div>
     </div>
   );
