@@ -4,7 +4,6 @@ import Card from '../components/Card';
 import './Login.css';
 import Input from '../components/Input';
 import Button from '../components/Button';
-import InnerGreenButton from '../components/InnerGreenButton';
 import InfoContext from '../context/infoContext';
 
 function Login() {

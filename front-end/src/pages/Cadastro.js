@@ -3,8 +3,8 @@ import { useHistory } from 'react-router-dom';
 import Card from '../components/Card';
 import './Login.css';
 import Input from '../components/Input';
-import GreenButton from '../components/GreenButton';
 import InfoContext from '../context/infoContext';
+import Button from '../components/Button';
 
 function Cadastro() {
   const { requestRegister } = useContext(InfoContext);
@@ -94,9 +94,10 @@ function Cadastro() {
             datatestid="common_register__input-password"
             handleChange={ handleChangeRegister }
           />
-          <GreenButton
+          <Button
             text="CADASTRAR"
-            datatestid="common_register__button-register"
+            buttonDatatestid="common_register__button-register"
+            buttonClasse="green-button"
             buttonState={ buttonStatusRegister }
             handleClick={ handleClickRegister }
           />
