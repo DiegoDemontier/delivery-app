@@ -1,10 +1,9 @@
 import React, { useContext } from 'react';
-import PropTypes from 'prop-types';
 import NavBar from '../components/NavBar';
 import InfoContext from '../context/infoContext';
 
-function Orders({ match }) {
-  const { infoUser, totalPrice } = useContext(InfoContext);
+function Orders() {
+  const { infoUser } = useContext(InfoContext);
 
   return (
     <div>
