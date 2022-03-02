@@ -25,3 +25,13 @@
   color: green;
   padding: 10px;
 }
+
+.finalizar-pedido {
+  background-color: rgb(3, 107, 82);
+  border-radius: 3px;
+  color: white;
+  cursor: pointer;
+  display: block;
+  margin: 20px auto;
+  padding: 15px 40px;
+}

@@ -53,7 +53,3 @@ Input.propTypes = {
     PropTypes.number,
   ]).isRequired,
 };
-
-// Input.defaultProps = {
-//   value: '',
-// };

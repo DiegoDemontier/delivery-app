@@ -7,6 +7,7 @@ import Login from './pages/Login';
 import Cadastro from './pages/Cadastro';
 import CustomerProducts from './pages/CustomerProducts';
 import CustomerCheckout from './pages/CustomerCheckout';
+import OrderDetails from './pages/OrderDetails';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route path="/register" component={ Cadastro } />
           <Route path="/customer/products" component={ CustomerProducts } />
           <Route path="/customer/checkout" component={ CustomerCheckout } />
+          <Route path="/customer/orders/:id" component={ OrderDetails } />
         </Switch>
       </InfoProvider>
 

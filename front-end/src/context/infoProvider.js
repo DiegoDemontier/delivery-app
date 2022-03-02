@@ -21,44 +21,59 @@ function InfoProvider({ children }) {
   }, [productsInCart]);
 
   const requestLogin = async ({ email, password }) => {
-    const getInfoLogin = await axios
+    const request = await axios
       .post('http://localhost:3001/login', { email, password })
       .then((res) => res.data)
       .catch((err) => err.response);
 
-    if (!getInfoLogin) return REQUEST_FAILED;
+    if (!request) return REQUEST_FAILED;
 
-    return getInfoLogin;
+    return request;
   };
 
   const requestRegister = async ({ name, email, password, role }) => {
-    const getInfoLogin = await axios
+    const request = await axios
       .post('http://localhost:3001/user', { name, email, password, role })
       .then((res) => res.data)
       .catch((err) => err.response);
 
-    if (!getInfoLogin) return REQUEST_FAILED;
-    return getInfoLogin;
+    if (!request) return REQUEST_FAILED;
+    return request;
   };
 
   const requestAllProducts = async () => {
-    const getInProducts = await axios
+    const request = await axios
       .get('http://localhost:3001/product')
       .then((res) => res.data)
       .catch((err) => err.response);
 
-    if (!getInProducts) return REQUEST_FAILED;
-    return getInProducts;
+    if (!request) return REQUEST_FAILED;
+    return request;
   };
 
   const requestAllSellers = async () => {
-    const getInProducts = await axios
+    const request = await axios
       .get('http://localhost:3001/user/seller')
       .then((res) => res.data)
       .catch((err) => err.response);
 
-    if (!getInProducts) return REQUEST_FAILED;
-    return getInProducts;
+    if (!request) return REQUEST_FAILED;
+    return request;
+  };
+
+  const requestNewSale = async (token, data) => {
+    const headers = {
+      'Content-Type': 'application/json',
+      Authorization: token,
+    };
+
+    const request = await axios
+      .post('http://localhost:3001/sale', data, { headers })
+      .then((res) => res.data)
+      .catch((err) => err.response);
+
+    if (!request) return REQUEST_FAILED;
+    return request;
   };
 
   const contextValues = {
@@ -71,6 +86,7 @@ function InfoProvider({ children }) {
     productsInCart,
     setProductsInCart,
     requestAllSellers,
+    requestNewSale,
   };
 
   return (

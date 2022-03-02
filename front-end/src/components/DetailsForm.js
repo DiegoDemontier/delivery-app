@@ -1,21 +1,25 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import InfoContext from '../context/infoContext';
+import Button from './Button';
 import './DetailsForm.css';
 import Input from './Input';
 import SelectOptions from './SelectOptions';
 
 function DetailsForm() {
+  const {
+    requestAllSellers,
+    requestNewSale,
+    productsInCart,
+    totalPrice,
+  } = useContext(InfoContext);
   const history = useHistory();
-  const { requestAllSellers, productsInCart, totalPrice } = useContext(InfoContext);
   const [arraySellers, setArraySellers] = useState([]);
   const [formData, setFormData] = useState({
     sellerId: '',
     deliveryAddress: '',
     deliveryNumber: '',
   });
-
-  console.log(formData);
 
   useEffect(() => {
     setFormData((prev) => ({
@@ -38,13 +42,23 @@ function DetailsForm() {
     }));
   };
 
-  const handleClick = () => {
+  const handleClick = async () => {
+    const { sellerId, deliveryAddress, deliveryNumber } = formData;
+    const user = JSON.parse(localStorage.getItem('user'));
+
     const saleProduct = productsInCart
       .map(({ productId, quantity }) => ({ productId, quantity }));
+
     const data = {
       sellerId,
       totalPrice,
+      deliveryAddress,
+      deliveryNumber,
+      saleProduct,
     };
+
+    const newSale = await requestNewSale(user.token, data);
+    history.replace(`orders/${newSale.id}`);
   };
 
   return (
@@ -88,14 +102,20 @@ function DetailsForm() {
           />
         </div>
       </div>
-      <button
+      <Button
+        text="FINALIZAR PEDIDO"
+        buttonClasse="finalizar-pedido"
+        buttonDatatestid="customer_checkout__button-submit-order"
+        handleClick={ handleClick }
+      />
+      {/* <button
         data-testid="customer_checkout__button-submit-order"
         className="finalizar-pedido"
         type="button"
-        onClick={ () => history.push('/customer/orders') }
+        onClick={ handleClick }
       >
         FINALIZAR PEDIDO
-      </button>
+      </button> */}
     </form>
   );
 }
