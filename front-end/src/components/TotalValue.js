@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 function TotalValue({ value }) {
   return (
     <span
-      datat-testid="customer_checkout__element-order-total-price"
+      data-testid="customer_checkout__element-order-total-price"
       className="total-value"
     >
       Total R$

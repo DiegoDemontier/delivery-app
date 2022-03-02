@@ -13,7 +13,7 @@ const title = [
 
 function Table() {
   const { productsInCart } = useContext(InfoContext);
-
+  console.log(productsInCart);
   return (
     <table className="table">
       <thead>
@@ -25,13 +25,15 @@ function Table() {
       </thead>
       <tbody>
         {
-          productsInCart.map(({ name, quantity, price }, index) => (<TableRow
-            key={ `element-order-table-name-${index}` }
-            name={ name }
-            quantity={ quantity }
-            price={ price }
-            index={ index }
-          />
+          productsInCart.map(({ name, quantity, price, productId }, index) => (
+            <TableRow
+              key={ productId }
+              productId={ productId }
+              name={ name }
+              quantity={ quantity }
+              price={ price }
+              index={ index }
+            />
           ))
         }
       </tbody>

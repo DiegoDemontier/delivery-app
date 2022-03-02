@@ -22,7 +22,7 @@ function CustomerCheckout() {
       </h4>
       <div className="table-container">
         <Tabele />
-        <TotalValue value={ totalValue.toFixed(2) } />
+        <TotalValue value={ totalValue.toFixed(2).replace('.', ',') } />
       </div>
       <h4 className="title">Detalhes e Endereço para Entrega</h4>
       <div className="table-container">

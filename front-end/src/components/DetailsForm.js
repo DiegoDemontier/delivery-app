@@ -60,6 +60,7 @@ function DetailsForm() {
         </div>
       </div>
       <button
+        data-testid="customer_checkout__button-submit-order"
         className="finalizar-pedido"
         type="button"
         onClick={ () => history.push('/customer/orders') }
