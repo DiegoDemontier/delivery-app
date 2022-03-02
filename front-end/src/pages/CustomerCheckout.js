@@ -7,11 +7,14 @@ import './CustomerCheckout.css';
 import DetailsForm from '../components/DetailsForm';
 
 function CustomerCheckout() {
-  const { infoUser, totalValue } = useContext(InfoContext);
+  const { infoUser, totalPrice } = useContext(InfoContext);
 
   return (
     <div>
-      <NavBar user={ infoUser.name } />
+      <NavBar
+        user={ infoUser.name }
+        productClasse="green"
+      />
       <h4
         className="title"
       >
@@ -19,7 +22,7 @@ function CustomerCheckout() {
       </h4>
       <div className="table-container">
         <Tabele />
-        <TotalValue value={ totalValue.toFixed(2) } />
+        <TotalValue value={ totalPrice } />
       </div>
       <h4 className="title">Detalhes e Endereço para Entrega</h4>
       <div className="table-container">

@@ -21,13 +21,16 @@ const createUser = async (data) => {
   return null;
 };
 
-const findAllUsers = async () => {
-  const getUsers = await users.findAll({});
+const findAllSellers = async () => {
+  const getSellers = await users.findAll({
+    where: { role: 'seller' },
+    attributes: { exclude: ['email', 'password', 'role'] },
+  });
   
-  return getUsers;
+  return getSellers;
 };
 
 module.exports = {
   createUser,
-  findAllUsers,
+  findAllSellers,
 };

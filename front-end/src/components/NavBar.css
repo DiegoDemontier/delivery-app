@@ -1,33 +1,53 @@
 .navbar {
-  color: white;
+  align-items: center;
+  background: #036b52;
   display: flex;
   flex-direction: row;
-  height: 50px;
+  height: 105px;
+  justify-content: space-between;
+  margin-bottom: 80px;
   text-align: center;
   width: 100%;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+.navbar .product-nav {
+  background-color: transparent;
+  color: white;
+  cursor: pointer;
+  font-size: 36px;
+  font-weight: 700;
+  height: 105px;
+  width: 367px;
 }
 
-.green {
+.navbar .green {
   background-color: #2fc18c;
-  width: 20%;
+  color: black;
 }
 
-.dark-green {
-  background-color: #036b52;
-  width: 50%;
+.navbar .test {
+  display: flex;
+  font-size: 36px;
+  font-weight: 400;
 }
 
-.purple {
+.navbar .purple {
+  align-items: center;
   background-color: #421981;
-  width: 20%;
+  color: white;
+  display: flex;
+  height: 105px;
+  padding-left: 50px;
+  padding-right: 50px;
 }
 
-.blue {
+.navbar .test .btn-logout {
   background-color: #056cf9;
-  width: 10%;
+  color: white;
+  cursor: pointer;
+  font-size: 36px;
+  font-weight: 400;
+  height: 105px;
+  padding-left: 50px;
+  padding-right: 50px;
 }

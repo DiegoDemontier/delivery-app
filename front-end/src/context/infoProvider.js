@@ -4,73 +4,89 @@ import axios from 'axios';
 import InfoContext from './infoContext';
 
 function InfoProvider({ children }) {
-  const productList = [
-    {
-      name: 'Cerveja Stella 250mil',
-      quantity: 3,
-      price: 3.50,
-    },
-    {
-      name: 'Cerveja Skol Latão 450ml',
-      quantity: 4,
-      price: 4.10,
-    },
-    {
-      name: 'Salgadinho Torcida Churrasco',
-      quantity: 1,
-      price: 1.56,
-    },
-  ];
+  const [productsInCart, setProductsInCart] = useState([]);
+  const [infoUser, setInfoUser] = useState({});
+  const [totalPrice, setTotalPrice] = useState(0);
 
-  const [infoUser, setInfoUser] = useState({ name: 'Fulando' });
-  const [products, setProducts] = useState(productList);
-  const [totalValue, setTotalValue] = useState(0);
+  const REQUEST_FAILED = 'Falha na requisiçao';
 
   useEffect(() => {
-    const total = products.reduce((acc, curr) => {
+    const total = productsInCart.reduce((acc, curr) => {
       const subtotal = curr.price * curr.quantity;
       const totalSum = acc + subtotal;
       return totalSum;
     }, 0);
 
-    console.log('--------total reduce', total);
-
-    setTotalValue(total);
-  }, [products]);
+    setTotalPrice(total);
+  }, [productsInCart]);
 
   const requestLogin = async ({ email, password }) => {
-    const getInfoLogin = await axios
+    const request = await axios
       .post('http://localhost:3001/login', { email, password })
       .then((res) => res.data)
       .catch((err) => err.response);
 
-    if (!getInfoLogin) return 'Falha na requisiçao';
+    if (!request) return REQUEST_FAILED;
 
-    setInfoUser({
-      ...infoUser,
-      getInfoLogin,
-    });
-
-    return getInfoLogin;
+    return request;
   };
 
   const requestRegister = async ({ name, email, password, role }) => {
-    const getInfoLogin = await axios
+    const request = await axios
       .post('http://localhost:3001/user', { name, email, password, role })
       .then((res) => res.data)
       .catch((err) => err.response);
 
-    if (!getInfoLogin) return 'Falha na requisiçao';
-    return getInfoLogin;
+    if (!request) return REQUEST_FAILED;
+    return request;
+  };
+
+  const requestAllProducts = async () => {
+    const request = await axios
+      .get('http://localhost:3001/product')
+      .then((res) => res.data)
+      .catch((err) => err.response);
+
+    if (!request) return REQUEST_FAILED;
+    return request;
+  };
+
+  const requestAllSellers = async () => {
+    const request = await axios
+      .get('http://localhost:3001/user/seller')
+      .then((res) => res.data)
+      .catch((err) => err.response);
+
+    if (!request) return REQUEST_FAILED;
+    return request;
+  };
+
+  const requestNewSale = async (token, data) => {
+    const headers = {
+      'Content-Type': 'application/json',
+      Authorization: token,
+    };
+
+    const request = await axios
+      .post('http://localhost:3001/sale', data, { headers })
+      .then((res) => res.data)
+      .catch((err) => err.response);
+
+    if (!request) return REQUEST_FAILED;
+    return request;
   };
 
   const contextValues = {
     requestLogin,
     requestRegister,
+    totalPrice,
+    requestAllProducts,
     infoUser,
-    products,
-    totalValue,
-    setProducts,
+    setInfoUser,
+    productsInCart,
+    setProductsInCart,
+    requestAllSellers,
+    requestNewSale,
   };
 
   return (

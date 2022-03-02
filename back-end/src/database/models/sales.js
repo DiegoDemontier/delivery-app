@@ -8,7 +8,8 @@ module.exports = (sequelize, DataTypes) => {
       status: DataTypes.STRING(50),
     },
     {
-      createdAt: 'saleDate',
+      underscored: true,
+      createdAt: 'sale_date',
       updatedAt: false,
     },
   );

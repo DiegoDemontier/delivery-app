@@ -28,12 +28,3 @@
 .details-label {
   color: #584c4c;
 }
-
-.finalizar-pedido {
-  background-color: rgb(3, 107, 82);
-  border-radius: 3px;
-  color: white;
-  display: block;
-  margin: 20px auto;
-  padding: 15px 40px;
-}

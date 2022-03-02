@@ -3,8 +3,7 @@ import { useHistory } from 'react-router-dom';
 import Card from '../components/Card';
 import './Login.css';
 import Input from '../components/Input';
-import GreenButton from '../components/GreenButton';
-import InnerGreenButton from '../components/InnerGreenButton';
+import Button from '../components/Button';
 import InfoContext from '../context/infoContext';
 
 function Login() {
@@ -13,7 +12,7 @@ function Login() {
     password: '',
   });
   const [messageErrorLogin, setMessageErrorLogin] = useState('none');
-  const { requestLogin } = useContext(InfoContext);
+  const { requestLogin, setInfoUser } = useContext(InfoContext);
 
   const history = useHistory();
 
@@ -25,9 +24,13 @@ function Login() {
   };
 
   const handleClickLogin = async () => {
-    const res = await requestLogin(login);
+    const getUser = await requestLogin(login);
 
-    if (res.token) history.push('customer/products');
+    if (getUser.token) {
+      localStorage.setItem('user', JSON.stringify(getUser));
+      setInfoUser(getUser);
+      history.replace('customer/products');
+    }
 
     setMessageErrorLogin('block');
   };
@@ -70,16 +73,18 @@ function Login() {
             datatestid="common_login__input-password"
             handleChange={ handleChangeLogin }
           />
-          <GreenButton
+          <Button
             text="LOGIN"
-            datatestid="common_login__button-login"
+            buttonDatatestid="common_login__button-login"
+            buttonClasse="green-button"
             buttonState={ buttonStatus }
             handleClick={ handleClickLogin }
           />
-          <InnerGreenButton
+          <Button
             text="Ainda não tenho conta"
-            datatestid="common_login__button-register"
-            gotoRegister={ () => history.push('/register') }
+            buttonDatatestid="common_login__button-register"
+            buttonClasse="inner-green-button"
+            handleClick={ () => history.push('/register') }
           />
           <p
             data-testid="common_login__element-invalid-email"

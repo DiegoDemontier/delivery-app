@@ -1,5 +1,5 @@
 const service = require('../services/usersService');
-const { created } = require('../utils/statusCode');
+const { created, success } = require('../utils/statusCode');
 
 const createUser = async (req, res, next) => {
   try {
@@ -15,18 +15,18 @@ const createUser = async (req, res, next) => {
   }
 };
 
-const findAllUsers = async (req, res, next) => {
+const findAllSellers = async (req, res, next) => {
   try {
-    const users = await service.findAllUsers();
+    const getAllSellers = await service.findAllSellers();
     
-    return res.status(created).json(users);
+    return res.status(success).json(getAllSellers);
   } catch (error) {
-    console.log(`ERROR FIND ALL USERS -> ${error.message}`);
+    console.log(`ERROR FIND ALL SELLERS -> ${error.message}`);
     return next(error);
   }
 };
 
 module.exports = {
   createUser,
-  findAllUsers,
+  findAllSellers,
 };

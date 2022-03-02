@@ -1,0 +1,37 @@
+.btn-products {
+  background: rgb(3, 109, 85);
+  border-radius: 10px;
+  color: white;
+  cursor: pointer;
+  font-size: 36px;
+  font-weight: 700;
+  height: 79px;
+  margin: 20px;
+  width: 445px;
+}
+
+.green-button {
+  background-color: green;
+  border-radius: 3px;
+  color: white;
+  margin-bottom: 20px;
+  padding: 10px;
+}
+
+.inner-green-button {
+  background-color: rgba(255, 255, 255, 0);
+  border: 1px solid green;
+  border-radius: 3px;
+  color: green;
+  padding: 10px;
+}
+
+.finalizar-pedido {
+  background-color: rgb(3, 107, 82);
+  border-radius: 3px;
+  color: white;
+  cursor: pointer;
+  display: block;
+  margin: 20px auto;
+  padding: 15px 40px;
+}

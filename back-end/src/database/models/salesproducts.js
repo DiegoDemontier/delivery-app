@@ -4,7 +4,11 @@ module.exports = (sequelize, DataTypes) => {
     {
       quantity: DataTypes.INTEGER,
     },
-    { timestamps: false },
+    { 
+      timestamps: false,
+      underscored: true,
+      tableName: 'salesProducts',
+    },
   );
 
   salesProducts.associate = (models) => {

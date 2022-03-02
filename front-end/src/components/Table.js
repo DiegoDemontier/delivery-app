@@ -12,7 +12,7 @@ const title = [
   'Remover Item'];
 
 function Table() {
-  const { products } = useContext(InfoContext);
+  const { productsInCart } = useContext(InfoContext);
 
   return (
     <table className="table">
@@ -25,13 +25,15 @@ function Table() {
       </thead>
       <tbody>
         {
-          products.map(({ name, quantity, price }, index) => (<TableRow
-            key={ `element-order-table-name-${index}` }
-            name={ name }
-            quantity={ quantity }
-            price={ price }
-            index={ index }
-          />
+          productsInCart.map(({ name, quantity, price, productId }, index) => (
+            <TableRow
+              key={ productId }
+              productId={ productId }
+              name={ name }
+              quantity={ quantity }
+              price={ price }
+              index={ index }
+            />
           ))
         }
       </tbody>
