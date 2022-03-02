@@ -74,5 +74,3 @@ OrderDetails.propTypes = {
 };
 
 export default OrderDetails;
-
-// verde claro: #2FC18C
