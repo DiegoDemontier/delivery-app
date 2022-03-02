@@ -9,7 +9,7 @@ function TotalValue({ value }) {
       className="total-value"
     >
       Total R$
-      {` ${value}`}
+      { ` ${value.toFixed(2).replace('.', ',')}` }
     </span>
   );
 }

@@ -27,7 +27,7 @@ function DetailsForm() {
             labelName="P. Vendedora Responsável:"
             name="seller"
             datatestid="customer_checkout__select-seller"
-            handleChange="handleChangeForm"
+            handleChange={ handleChangeForm }
             selectClass="input-field"
             labelClass="details-label"
           />
