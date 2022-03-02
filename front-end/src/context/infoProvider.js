@@ -6,7 +6,7 @@ import InfoContext from './infoContext';
 function InfoProvider({ children }) {
   const [productsInCart, setProductsInCart] = useState([]);
   const [infoUser, setInfoUser] = useState({});
-  const [totalValue, setTotalValue] = useState(0);
+  const [totalPrice, setTotalPrice] = useState(0);
 
   const REQUEST_FAILED = 'Falha na requisiçao';
 
@@ -17,7 +17,7 @@ function InfoProvider({ children }) {
       return totalSum;
     }, 0);
 
-    setTotalValue(total);
+    setTotalPrice(total);
   }, [productsInCart]);
 
   const requestLogin = async ({ email, password }) => {
@@ -64,7 +64,7 @@ function InfoProvider({ children }) {
   const contextValues = {
     requestLogin,
     requestRegister,
-    totalValue,
+    totalPrice,
     requestAllProducts,
     infoUser,
     setInfoUser,

@@ -7,18 +7,20 @@ import SelectOptions from './SelectOptions';
 
 function DetailsForm() {
   const history = useHistory();
-  const { requestAllSellers } = useContext(InfoContext);
+  const { requestAllSellers, productsInCart, totalPrice } = useContext(InfoContext);
   const [arraySellers, setArraySellers] = useState([]);
   const [formData, setFormData] = useState({
-    seller: '',
-    adress: '',
-    number: '',
+    sellerId: '',
+    deliveryAddress: '',
+    deliveryNumber: '',
   });
+
+  console.log(formData);
 
   useEffect(() => {
     setFormData((prev) => ({
       ...prev,
-      seller: arraySellers[0] && arraySellers[0].name,
+      sellerId: arraySellers[0] && arraySellers[0].id,
     }));
   }, [arraySellers]);
 
@@ -36,13 +38,22 @@ function DetailsForm() {
     }));
   };
 
+  const handleClick = () => {
+    const saleProduct = productsInCart
+      .map(({ productId, quantity }) => ({ productId, quantity }));
+    const data = {
+      sellerId,
+      totalPrice,
+    };
+  };
+
   return (
     <form>
       <div className="details-form">
         <div className="form-input">
           <SelectOptions
             labelName="P. Vendedora Responsável:"
-            name="seller"
+            name="sellerId"
             datatestid="customer_checkout__select-seller"
             handleChange={ handleChangeForm }
             selectClass="input-field"
@@ -54,11 +65,11 @@ function DetailsForm() {
           <Input
             labelName="Endereço"
             inputPlaceholder="Travessa Terceira da Castanheira, Bairro Muruci"
-            name="adress"
+            name="deliveryAddress"
             type="text"
             labelClass="details-label"
             inputClass="input-field"
-            value={ FormData.adress }
+            value={ FormData.deliveryAddress }
             datatestid="customer_checkout__input-address"
             handleChange={ handleChangeForm }
           />
@@ -67,11 +78,11 @@ function DetailsForm() {
           <Input
             labelName="Número"
             inputPlaceholder="198"
-            name="number"
+            name="deliveryNumber"
             type="text"
             labelClass="details-label"
             inputClass="input-field"
-            value={ FormData.number }
+            value={ FormData.deliveryNumber }
             datatestid="customer_checkout__input-addressNumber"
             handleChange={ handleChangeForm }
           />

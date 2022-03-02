@@ -7,7 +7,7 @@ import NavBar from '../components/NavBar';
 import './CustomerProducts.css';
 
 function CustomerProducts() {
-  const { requestAllProducts, totalValue, infoUser } = useContext(InfoContext);
+  const { requestAllProducts, totalPrice, infoUser } = useContext(InfoContext);
   const [arrayProducts, setArrayProducts] = useState([]);
   const history = useHistory();
 
@@ -37,11 +37,11 @@ function CustomerProducts() {
         ))}
       </div>
       <Button
-        text={ `Ver Carrinho: R$ ${totalValue.toFixed(2).replace('.', ',')}` }
+        text={ `Ver Carrinho: R$ ${totalPrice.toFixed(2).replace('.', ',')}` }
         buttonClasse="btn-products"
         buttonDatatestid="customer_products__button-cart"
         spanDatatestid="customer_products__checkout-bottom-value"
-        buttonState={ totalValue === 0 }
+        buttonState={ totalPrice === 0 }
         handleClick={ () => history.push('/customer/checkout') }
       />
     </div>
