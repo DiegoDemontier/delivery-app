@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import NavBar from '../components/NavBar';
 import InfoContext from '../context/infoContext';
-import Tabele from '../components/Table';
+import Table from '../components/Table';
 import TotalValue from '../components/TotalValue';
 import './CustomerCheckout.css';
 import DetailsForm from '../components/DetailsForm';
@@ -21,7 +21,7 @@ function CustomerCheckout() {
         Finalizar Pedido
       </h4>
       <div className="table-container">
-        <Tabele />
+        <Table displayName="show" datatest="checkout" />
         <TotalValue value={ totalPrice } />
       </div>
       <h4 className="title">Detalhes e Endereço para Entrega</h4>

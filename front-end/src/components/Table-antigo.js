@@ -1,5 +1,4 @@
 import React, { useContext } from 'react';
-import PropTypes from 'prop-types';
 import TableRow from './TableRow';
 import InfoContext from '../context/infoContext';
 import './Table.css';
@@ -12,14 +11,7 @@ const title = [
   'Sub-total',
   'Remover Item'];
 
-const titleShort = [
-  'Item',
-  'Descrição',
-  'Quantidade',
-  'ValorUnitário',
-  'Sub-total'];
-
-function Table({ displayName, datatest }) {
+function Table() {
   const { productsInCart } = useContext(InfoContext);
 
   return (
@@ -27,9 +19,7 @@ function Table({ displayName, datatest }) {
       <thead>
         <tr>
           {
-            displayName === 'no-display'
-              ? titleShort.map((item, index) => <th key={ index }>{ item }</th>)
-              : title.map((item, index) => <th key={ index }>{ item }</th>)
+            title.map((item, index) => <th key={ index }>{ item }</th>)
           }
         </tr>
       </thead>
@@ -43,8 +33,6 @@ function Table({ displayName, datatest }) {
               quantity={ quantity }
               price={ price }
               index={ index }
-              displayName={ displayName }
-              datatest={ datatest }
             />
           ))
         }
@@ -52,10 +40,5 @@ function Table({ displayName, datatest }) {
     </table>
   );
 }
-
-Table.propTypes = {
-  displayName: PropTypes.string.isRequired,
-  datatest: PropTypes.string.isRequired,
-};
 
 export default Table;

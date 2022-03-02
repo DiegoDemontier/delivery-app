@@ -25,16 +25,18 @@ function CustomerProducts() {
         productClasse="green"
       />
       <div className="products-container">
-        {arrayProducts.map((product) => (
-          <div key={ product.id }>
-            <ProductCard
-              productId={ product.id }
-              name={ product.name }
-              price={ product.price }
-              urlImage={ product.urlImage }
-            />
-          </div>
-        ))}
+        {
+          arrayProducts.map((product) => (
+            <div key={ product.id }>
+              <ProductCard
+                productId={ product.id }
+                name={ product.name }
+                price={ product.price }
+                urlImage={ product.urlImage }
+              />
+            </div>
+          ))
+        }
       </div>
       <Button
         text={ `Ver Carrinho: R$ ${totalPrice.toFixed(2).replace('.', ',')}` }
