@@ -15,11 +15,7 @@ const createSale = async (data) => {
   const getProducts = await products.findAll({ where: { id: arrayProductId } });
 
   const newSale = await sales.create({
-    userId,
-    sellerId,
-    totalPrice,
-    deliveryAddress,
-    deliveryNumber });
+    userId, sellerId, totalPrice, deliveryAddress, deliveryNumber });
     
   await newSale.addProducts(getProducts);
   const { dataValues: { id: saleId } } = newSale;
@@ -28,7 +24,7 @@ const createSale = async (data) => {
     await salesProducts.update({ quantity }, { where: { [Op.and]: [{ productId }, { saleId }] } });
   });
 
-  return null;
+  return newSale.dataValues;
 };
 
 module.exports = {
