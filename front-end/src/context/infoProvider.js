@@ -51,6 +51,16 @@ function InfoProvider({ children }) {
     return getInProducts;
   };
 
+  const requestAllSellers = async () => {
+    const getInProducts = await axios
+      .get('http://localhost:3001/user/seller')
+      .then((res) => res.data)
+      .catch((err) => err.response);
+
+    if (!getInProducts) return REQUEST_FAILED;
+    return getInProducts;
+  };
+
   const contextValues = {
     requestLogin,
     requestRegister,
@@ -60,6 +70,7 @@ function InfoProvider({ children }) {
     setInfoUser,
     productsInCart,
     setProductsInCart,
+    requestAllSellers,
   };
 
   return (

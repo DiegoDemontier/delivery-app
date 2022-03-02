@@ -62,7 +62,7 @@ TableRow.propTypes = {
   productId: PropTypes.number.isRequired,
   name: PropTypes.string.isRequired,
   quantity: PropTypes.number.isRequired,
-  price: PropTypes.number.isRequired,
+  price: PropTypes.string.isRequired,
 };
 
 export default TableRow;

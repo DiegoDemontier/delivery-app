@@ -1,22 +1,39 @@
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import InfoContext from '../context/infoContext';
 import './DetailsForm.css';
 import Input from './Input';
 import SelectOptions from './SelectOptions';
 
 function DetailsForm() {
   const history = useHistory();
+  const { requestAllSellers } = useContext(InfoContext);
+  const [arraySellers, setArraySellers] = useState([]);
   const [formData, setFormData] = useState({
     seller: '',
     adress: '',
     number: '',
   });
 
+  useEffect(() => {
+    setFormData((prev) => ({
+      ...prev,
+      seller: arraySellers[0] && arraySellers[0].name,
+    }));
+  }, [arraySellers]);
+
+  useEffect(() => {
+    const response = async () => {
+      setArraySellers(await requestAllSellers());
+    };
+    response();
+  }, [requestAllSellers]);
+
   const handleChangeForm = ({ target: { value, name } }) => {
-    setFormData({
-      ...formData,
+    setFormData((prev) => ({
+      ...prev,
       [name]: value,
-    });
+    }));
   };
 
   return (
@@ -30,6 +47,7 @@ function DetailsForm() {
             handleChange={ handleChangeForm }
             selectClass="input-field"
             labelClass="details-label"
+            options={ arraySellers }
           />
         </div>
         <div className="form-input big">

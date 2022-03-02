@@ -4,6 +4,7 @@ import './Input.css';
 
 function SelectOptions({ labelName,
   name,
+  options,
   datatestid,
   handleChange,
   selectClass,
@@ -18,7 +19,11 @@ function SelectOptions({ labelName,
         data-testid={ datatestid }
         onChange={ handleChange }
       >
-        <option value="Fulana Pereira">Fulana Pereira</option>
+        {
+          options.map((seller) => (
+            <option key={ seller.id } value={ seller.id }>{ seller.name }</option>
+          ))
+        }
       </select>
     </label>
   );
@@ -31,6 +36,7 @@ SelectOptions.propTypes = {
   labelClass: PropTypes.string.isRequired,
   selectClass: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
+  options: PropTypes.arrayOf(PropTypes.object).isRequired,
   datatestid: PropTypes.string.isRequired,
   handleChange: PropTypes.func.isRequired,
 };

@@ -13,7 +13,7 @@ const title = [
 
 function Table() {
   const { productsInCart } = useContext(InfoContext);
-  console.log(productsInCart);
+
   return (
     <table className="table">
       <thead>
