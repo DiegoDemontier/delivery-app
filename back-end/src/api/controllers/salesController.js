@@ -14,6 +14,21 @@ const createSale = async (req, res, next) => {
   }
 };
 
+const findSaleById = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const { id: userId } = req.user;
+
+    const getSale = await service.findSaleById(id, userId);
+    
+    return res.status(created).json(getSale);
+  } catch (error) {
+    console.log(`ERROR FIND SALE BY ID -> ${error.message}`);
+    return next(error);
+  }
+};
+
 module.exports = {
   createSale,
+  findSaleById,
 };
