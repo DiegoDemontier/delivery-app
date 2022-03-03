@@ -45,20 +45,18 @@ const findSaleById = async (id, userId) => {
   return getSale;
 };
 
-const findAllSales = async (userId) => {
-  const getSales = await sales.findAll({ 
-    where: { userId },
-    attributes: ['totalPrice', 'status', 'sale_date'],
-    include: [
-      { association: 'seller', attributes: ['name'] },
-      {
-        association: 'products',
-        attributes: ['name', 'price'],
-        through: { attributes: ['quantity'] },
-      },
-    ],
-  });
-
+const findAllSales = async (id, role) => {
+  let getSales;
+  if (role === 'customer') {
+    getSales = await sales.findAll({ 
+      where: { userId: id },
+    });
+  } else if (role === 'seller') {
+    getSales = await sales.findAll({ 
+      where: { sellerId: id },
+    });
+  }
+  
   if (!getSales) throw errorConstructor(notFound, 'user has no sales');
   return getSales;
 };
