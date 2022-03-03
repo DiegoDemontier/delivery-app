@@ -23,6 +23,7 @@ function CustomerProducts() {
       <NavBar
         user={ infoUser.name }
         productClasse="green"
+        text="PRODUTOS"
       />
       <div className="products-container">
         {

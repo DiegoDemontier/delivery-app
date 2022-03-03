@@ -14,6 +14,7 @@ function CustomerCheckout() {
       <NavBar
         user={ infoUser.name }
         productClasse="green"
+        text="PRODUTOS"
       />
       <h4
         className="title"

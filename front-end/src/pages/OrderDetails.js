@@ -15,6 +15,7 @@ function OrderDetails({ match }) {
       <NavBar
         user={ infoUser.name }
         ordersClasse="green"
+        text="PRODUTOS"
       />
       <h4
         className="order-details-title"
