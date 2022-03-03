@@ -25,38 +25,31 @@ function OrderDetails({ match }) {
       <div className="order-details-table-container">
         <header className="order-details-header">
           <span
-            data-testid={
-              `customer_order_details__element-order-details-label-order-id-${id}`
-            }
+            data-testid="customer_order_details__element-order-details-label-order-id"
             className="bold"
           >
             {`PEDIDO ${id};`}
           </span>
           <span
-            data-testid={
-              `ustomer_order_details__element-order-details-label-seller-name-${id}`
-            }
+            data-testid="ustomer_order_details__element-order-details-label-seller-name"
           >
             P. Vend: Fulana Pereira
           </span>
           <span
-            data-testid={
-              `customer_order_details__element-order-details-label-order-date-${id}`
-            }
+            data-testid="customer_order_details__element-order-details-label-order-date"
             className="date bold"
           >
             07/04/2021
           </span>
           <span
-            data-testid={
-              `customer_order_details__element-order-details-label-delivery-status-${id}`
-            }
+            data-testid="customer_order_details__element-order
+            -details-label-delivery-status"
             className="status bold"
           >
             ENTREGUE
           </span>
           <span
-            data-testid={ `customer_order_details__button-delivery-check-${id}` }
+            data-testid="customer_order_details__button-delivery-check"
             className="marcador bold"
           >
             MARCAR COMO ENTREGUE
