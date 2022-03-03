@@ -20,14 +20,37 @@
   width: 26%;
 }
 
+.adress-container {
+  display: flex;
+  flex-direction: column;
+  width: 74%;
+}
+
+.adress-container-top {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  height: 110px;
+  justify-content: space-between;
+}
+
+.h-110 {
+  height: 110px;
+}
+
+.h-145 {
+  height: 145px;
+}
+
 .pendente, .preparando, .entregue {
   align-items: center;
   border-radius: 5px;
   display: flex;
   height: 90%;
   justify-content: center;
+  margin-left: 10px;
   text-transform: uppercase;
-  width: 35%;
+  width: 46%;
 }
 
 .pendente {
@@ -52,7 +75,7 @@
   height: 90%;
   justify-content: space-between;
   margin-right: 10px;
-  width: 35%;
+  width: 46%;
 }
 
 .third-block > * {
@@ -63,3 +86,12 @@
   height: 45%;
   justify-content: center;
 }
+
+.d-none {
+  display: none;
+}
+
+.d-block {
+  display: block;
+}
+

@@ -16,9 +16,24 @@ function Orders() {
         />
       </div>
       <div className="orders-container">
-        <OrderCard status="pendente" />
-        <OrderCard status="preparando" />
-        <OrderCard status="entregue" />
+        <OrderCard
+          status="pendente"
+          cardRole="customer"
+          display="d-none"
+          height="h-145"
+        />
+        <OrderCard
+          status="preparando"
+          cardRole="customer"
+          display="d-none"
+          height="h-145"
+        />
+        <OrderCard
+          status="entregue"
+          cardRole="customer"
+          display="d-none"
+          height="h-145"
+        />
       </div>
     </div>
   );
