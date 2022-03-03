@@ -1,5 +1,5 @@
 const service = require('../services/salesService');
-const { created } = require('../utils/statusCode');
+const { created, success } = require('../utils/statusCode');
 
 const createSale = async (req, res, next) => {
   try {
@@ -21,7 +21,7 @@ const findSaleById = async (req, res, next) => {
 
     const getSale = await service.findSaleById(id, userId);
     
-    return res.status(created).json(getSale);
+    return res.status(success).json(getSale);
   } catch (error) {
     console.log(`ERROR FIND SALE BY ID -> ${error.message}`);
     return next(error);
@@ -34,7 +34,7 @@ const findAllSales = async (req, res, next) => {
 
     const getSales = await service.findAllSales(id, role);
     
-    return res.status(created).json(getSales);
+    return res.status(success).json(getSales);
   } catch (error) {
     console.log(`ERROR FIND ALL SALES -> ${error.message}`);
     return next(error);
