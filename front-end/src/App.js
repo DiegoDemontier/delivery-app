@@ -8,6 +8,8 @@ import Cadastro from './pages/Cadastro';
 import CustomerProducts from './pages/CustomerProducts';
 import CustomerCheckout from './pages/CustomerCheckout';
 import OrderDetails from './pages/OrderDetails';
+import Orders from './pages/Orders';
+import SellerOrders from './pages/SellerOders';
 
 function App() {
   return (
@@ -20,7 +22,9 @@ function App() {
           <Route path="/register" component={ Cadastro } />
           <Route path="/customer/products" component={ CustomerProducts } />
           <Route path="/customer/checkout" component={ CustomerCheckout } />
-          <Route path="/customer/orders/:id" component={ OrderDetails } />
+          <Route exact path="/customer/orders" component={ Orders } />
+          <Route exact path="/customer/orders/:id" component={ OrderDetails } />
+          <Route exact path="/seller/orders" component={ SellerOrders } />
         </Switch>
       </InfoProvider>
 

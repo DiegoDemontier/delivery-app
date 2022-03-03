@@ -33,3 +33,11 @@
   color: white;
   text-align: center;
 }
+
+.no-display {
+  display: none;
+}
+
+.show {
+  display: block;
+}
