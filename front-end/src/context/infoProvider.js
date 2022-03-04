@@ -20,6 +20,11 @@ function InfoProvider({ children }) {
     setTotalPrice(total);
   }, [productsInCart]);
 
+  const headers = {
+    'Content-Type': 'application/json',
+    Authorization: token,
+  };
+
   const requestLogin = async ({ email, password }) => {
     const request = await axios
       .post('http://localhost:3001/login', { email, password })
@@ -62,11 +67,6 @@ function InfoProvider({ children }) {
   };
 
   const requestNewSale = async (token, data) => {
-    const headers = {
-      'Content-Type': 'application/json',
-      Authorization: token,
-    };
-
     const request = await axios
       .post('http://localhost:3001/sale', data, { headers })
       .then((res) => res.data)
@@ -77,11 +77,6 @@ function InfoProvider({ children }) {
   };
 
   const requestOrderDetails = async (token, id) => {
-    const headers = {
-      'Content-Type': 'application/json',
-      Authorization: token,
-    };
-
     const request = await axios
       .get(`http://localhost:3001/sale/${id}`, { headers })
       .then((res) => res.data)
@@ -92,11 +87,6 @@ function InfoProvider({ children }) {
   };
 
   const requestOrders = async (token) => {
-    const headers = {
-      'Content-Type': 'application/json',
-      Authorization: token,
-    };
-
     const request = await axios
       .get('http://localhost:3001/sale', { headers })
       .then((res) => res.data)

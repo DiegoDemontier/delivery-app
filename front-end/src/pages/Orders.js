@@ -14,7 +14,7 @@ function Orders() {
       setOrders(await requestOrders(user.token));
     };
     response();
-  }, []);
+  }, [requestOrders]);
 
   console.log(orders);
   return (
