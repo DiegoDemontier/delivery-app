@@ -27,7 +27,10 @@ function CustomerCheckout() {
           displayName="show"
           datatest="checkout"
         />
-        <TotalValue value={ totalPrice } />
+        <TotalValue
+          dataTestid="customer_checkout__element-order-total-price"
+          value={ totalPrice }
+        />
       </div>
       <h4 className="title">Detalhes e Endereço para Entrega</h4>
       <div className="table-container">

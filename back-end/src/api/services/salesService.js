@@ -41,7 +41,7 @@ const findSaleById = async (id, userId, role) => {
       { association: 'seller', attributes: ['name'] },
       {
         association: 'products',
-        attributes: ['name', 'price'],
+        attributes: { exclude: 'urlImage' },
         through: { attributes: ['quantity'] },
       },
     ],

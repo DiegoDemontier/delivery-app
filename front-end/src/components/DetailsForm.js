@@ -47,7 +47,7 @@ function DetailsForm() {
     const user = JSON.parse(localStorage.getItem('user'));
 
     const saleProduct = productsInCart
-      .map(({ productId, quantity }) => ({ productId, quantity }));
+      .map(({ id: productId, salesProducts: { quantity } }) => ({ productId, quantity }));
 
     const data = {
       sellerId,

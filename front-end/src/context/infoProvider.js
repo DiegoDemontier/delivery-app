@@ -12,7 +12,7 @@ function InfoProvider({ children }) {
 
   useEffect(() => {
     const total = productsInCart.reduce((acc, curr) => {
-      const subtotal = curr.price * curr.quantity;
+      const subtotal = curr.price * curr.salesProducts.quantity;
       const totalSum = acc + subtotal;
       return totalSum;
     }, 0);

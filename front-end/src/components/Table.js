@@ -33,10 +33,10 @@ function Table({ displayName, datatest, products }) {
       </thead>
       <tbody>
         {
-          products.map(({ name, quantity, price, productId }, index) => (
+          products.map(({ name, salesProducts: { quantity }, price, id }, index) => (
             <TableRow
-              key={ productId }
-              productId={ productId }
+              key={ id }
+              productId={ id }
               name={ name }
               quantity={ quantity }
               price={ price }

@@ -7,6 +7,7 @@ import InfoContext from '../context/infoContext';
 import './OrderDetails.css';
 
 function OrderDetails({ match }) {
+  const { params: { id } } = match;
   const { infoUser, totalPrice, requestOrderDetails } = useContext(InfoContext);
   const [orderDetails, setOrderDetails] = useState({});
   const [saleDetails, setSaleDetails] = useState({
@@ -16,7 +17,8 @@ function OrderDetails({ match }) {
     status: '',
     totalPrice: '',
   });
-  const { params: { id } } = match;
+
+  const prefix = 'customer_order_details__';
 
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem('user'));
@@ -49,7 +51,7 @@ function OrderDetails({ match }) {
     }
   }, [orderDetails]);
 
-  console.log(saleDetails.date);
+  const stateButton = true;
 
   return (
     <div>
@@ -66,33 +68,33 @@ function OrderDetails({ match }) {
       <div className="order-details-table-container">
         <header className="order-details-header">
           <span
-            data-testid="customer_order_details__element-order-details-label-order-id"
+            data-testid={ `${prefix}element-order-details-label-order-id` }
             className="bold"
           >
             {`PEDIDO ${id};`}
           </span>
           <span
-            data-testid="ustomer_order_details__element-order-details-label-seller-name"
+            data-testid={ `${prefix}element-order-details-label-seller-name` }
           >
             {`P. Vend: ${saleDetails.seller}`}
           </span>
           <span
-            data-testid="customer_order_details__element-order-details-label-order-date"
+            data-testid={ `${prefix}element-order-details-label-order-date` }
             className="date bold"
           >
             {saleDetails.date}
           </span>
           <span
-            data-testid="customer_order_details__element-order
-            -details-label-delivery-status"
+            data-testid={ `${prefix}element-order-details-label-delivery-status` }
             className="status bold"
           >
             {saleDetails.status}
           </span>
           <button
             type="button"
-            data-testid="customer_order_details__button-delivery-check"
+            data-testid={ `${prefix}button-delivery-check` }
             className="marcador bold"
+            disabled={ stateButton }
           >
             MARCAR COMO ENTREGUE
           </button>
@@ -103,7 +105,10 @@ function OrderDetails({ match }) {
           displayName="no-display"
           datatest="order-details"
         />
-        <TotalValue value={ totalPrice } />
+        <TotalValue
+          dataTestid={ `${prefix}element-order-total-price` }
+          value={ totalPrice }
+        />
       </div>
     </div>
   );
