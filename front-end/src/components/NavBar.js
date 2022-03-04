@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import Button from './Button';
 import './NavBar.css';
 
-function NavBar({ user, productClasse, ordersClasse }) {
+function NavBar({ user, productClasse, ordersClasse, display, text }) {
   const history = useHistory();
 
   const handleClick = () => {
@@ -17,12 +17,12 @@ function NavBar({ user, productClasse, ordersClasse }) {
       <div>
         <Button
           buttonClasse={ `product-nav ${productClasse}` }
-          text="PRODUTOS"
+          text={ text }
           buttonDatatestid="customer_products__element-navbar-link-products"
           handleClick={ () => history.push('/customer/products') }
         />
         <Button
-          buttonClasse={ `product-nav ${ordersClasse}` }
+          buttonClasse={ `product-nav ${ordersClasse} ${display}` }
           text="MEUS PEDIDOS"
           buttonDatatestid="customer_products__element-navbar-link-orders"
           handleClick={ () => history.push('/customer/ordes') }
@@ -50,12 +50,15 @@ function NavBar({ user, productClasse, ordersClasse }) {
 NavBar.defaultProps = {
   productClasse: '',
   ordersClasse: '',
+  display: '',
 };
 
 NavBar.propTypes = {
   user: PropTypes.string.isRequired,
   productClasse: PropTypes.string,
   ordersClasse: PropTypes.string,
+  display: PropTypes.string,
+  text: PropTypes.string.isRequired,
 };
 
 export default NavBar;

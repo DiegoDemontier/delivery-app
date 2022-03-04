@@ -1,0 +1,43 @@
+.order-details-table-container {
+  border: 1px solid grey;
+  margin: 10px auto;
+  position: relative;
+  width: 70%;
+}
+
+.order-details-title {
+  margin: 10px auto;
+  width: 70%;
+}
+
+.order-details-header {
+  background-color: #e5e5e5;
+  display: flex;
+  justify-content: space-between;
+  padding: 8px;
+  text-align: center;
+}
+
+.order-details-header > * {
+  padding: 10px 15px;
+}
+
+.status {
+  background-color: #2fc18c;
+  border-radius: 5px;
+}
+
+.marcador {
+  background-color: #036b52;
+  border-radius: 5px;
+  color: white;
+}
+
+.date {
+  background-color: #f2fffc;
+  border-radius: 5px;
+}
+
+.bold {
+  font-weight: 800;
+}
