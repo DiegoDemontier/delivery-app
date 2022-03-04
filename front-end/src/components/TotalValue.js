@@ -2,10 +2,10 @@ import React from 'react';
 import './TotalValue.css';
 import PropTypes from 'prop-types';
 
-function TotalValue({ value }) {
+function TotalValue({ value, dataTestid }) {
   return (
     <span
-      data-testid="customer_checkout__element-order-total-price"
+      data-testid={ dataTestid }
       className="total-value"
     >
       Total R$
@@ -16,6 +16,7 @@ function TotalValue({ value }) {
 
 TotalValue.propTypes = {
   value: PropTypes.number.isRequired,
+  dataTestid: PropTypes.string.isRequired,
 };
 
 export default TotalValue;

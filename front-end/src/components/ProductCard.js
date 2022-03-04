@@ -9,35 +9,37 @@ import Input from './Input';
 function ProductCard({ productId, name, price, urlImage }) {
   const { setProductsInCart } = useContext(InfoContext);
   const [initialState, setInitialState] = useState({
-    productId,
+    id: productId,
     name,
     price,
-    quantity: 0,
+    salesProducts: {
+      quantity: 0,
+    },
   });
 
   useEffect(() => {
-    if (initialState.quantity > 0) {
+    if (initialState.salesProducts.quantity > 0) {
       setProductsInCart((prev) => (
-        [...prev.filter((product) => product.productId !== productId), initialState]
+        [...prev.filter((product) => product.id !== productId), initialState]
       ));
     } else {
       setProductsInCart((prev) => (
-        [...prev.filter((product) => product.productId !== productId)]
+        [...prev.filter((product) => product.id !== productId)]
       ));
     }
   }, [productId, initialState, setProductsInCart]);
 
   const increment = () => {
-    let newQuantity = Number(initialState.quantity);
+    let newQuantity = Number(initialState.salesProducts.quantity);
     newQuantity += 1;
-    setInitialState((prev) => ({ ...prev, quantity: newQuantity }));
+    setInitialState((prev) => ({ ...prev, salesProducts: { quantity: newQuantity } }));
   };
 
   const decrement = () => {
-    if (initialState.quantity > 0) {
-      let newQuantity = Number(initialState.quantity);
+    if (initialState.salesProducts.quantity > 0) {
+      let newQuantity = Number(initialState.salesProducts.quantity);
       newQuantity -= 1;
-      setInitialState((prev) => ({ ...prev, quantity: newQuantity }));
+      setInitialState((prev) => ({ ...prev, salesProducts: { quantity: newQuantity } }));
     }
   };
 
@@ -67,7 +69,7 @@ function ProductCard({ productId, name, price, urlImage }) {
         <div>
           <Input
             type="number"
-            value={ initialState.quantity }
+            value={ initialState.salesProducts.quantity }
             name="quantity"
             datatestid={ `customer_products__input-card-quantity-${productId}` }
             datatestidLabel={ `customer_products__element-card-title-${productId}` }
@@ -75,7 +77,7 @@ function ProductCard({ productId, name, price, urlImage }) {
             labelName={ name }
             handleChange={
               ({ target }) => setInitialState((prev) => (
-                { ...prev, quantity: target.value }))
+                { ...prev, salesProducts: { quantity: target.value } }))
             }
           />
         </div>

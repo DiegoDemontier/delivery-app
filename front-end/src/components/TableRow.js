@@ -5,6 +5,7 @@ import InfoContext from '../context/infoContext';
 
 function TableRow({ index, name, quantity, price, productId, displayName, datatest }) {
   const { setProductsInCart } = useContext(InfoContext);
+  console.log(index, name, quantity, price, productId, displayName, datatest);
 
   return (
     <tr className="items">
@@ -47,7 +48,7 @@ function TableRow({ index, name, quantity, price, productId, displayName, datate
           data-testid={ `customer_${datatest}__element-order-table-remove-${index}` }
           type="button"
           onClick={ () => setProductsInCart((prev) => (
-            [...prev.filter((product) => product.productId !== productId)]
+            [...prev.filter((product) => product.id !== productId)]
           )) }
         >
           Remover
