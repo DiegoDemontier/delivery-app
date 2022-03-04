@@ -17,9 +17,9 @@ const createSale = async (req, res, next) => {
 const findSaleById = async (req, res, next) => {
   try {
     const { id } = req.params;
-    const { id: userId } = req.user;
+    const { id: userId, role } = req.user;
 
-    const getSale = await service.findSaleById(id, userId);
+    const getSale = await service.findSaleById(id, userId, role);
     
     return res.status(success).json(getSale);
   } catch (error) {

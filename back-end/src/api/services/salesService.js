@@ -27,11 +27,17 @@ const createSale = async (data) => {
   return newSale.dataValues;
 };
 
-const findSaleById = async (id, userId) => {
+const findSaleById = async (id, userId, role) => {
+  let where;
+
+  if (role === 'customer') where = { id, userId };
+  if (role === 'seller') where = { id, sellerId: userId };
+
   const getSale = await sales.findOne({ 
-    where: { id, userId },
+    where,
     attributes: ['totalPrice', 'status', 'sale_date'],
     include: [
+      { association: 'user', attributes: ['name'] },
       { association: 'seller', attributes: ['name'] },
       {
         association: 'products',
@@ -46,16 +52,14 @@ const findSaleById = async (id, userId) => {
 };
 
 const findAllSales = async (id, role) => {
-  let getSales;
-  if (role === 'customer') {
-    getSales = await sales.findAll({ 
-      where: { userId: id },
-    });
-  } else if (role === 'seller') {
-    getSales = await sales.findAll({ 
-      where: { sellerId: id },
-    });
-  }
+  let where;
+
+  if (role === 'customer') where = { userId: id };
+  if (role === 'seller') where = { sellerId: id };
+
+  const getSales = await sales.findAll({ 
+    where,
+  });
   
   if (!getSales) throw errorConstructor(notFound, 'user has no sales');
   return getSales;
