@@ -91,6 +91,21 @@ function InfoProvider({ children }) {
     return request;
   };
 
+  const requestOrders = async (token) => {
+    const headers = {
+      'Content-Type': 'application/json',
+      Authorization: token,
+    };
+
+    const request = await axios
+      .get('http://localhost:3001/sale', { headers })
+      .then((res) => res.data)
+      .catch((err) => err.response);
+
+    if (!request) return REQUEST_FAILED;
+    return request;
+  };
+
   const contextValues = {
     requestLogin,
     requestRegister,
@@ -103,6 +118,7 @@ function InfoProvider({ children }) {
     requestAllSellers,
     requestNewSale,
     requestOrderDetails,
+    requestOrders,
   };
 
   return (

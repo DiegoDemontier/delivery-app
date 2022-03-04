@@ -1,12 +1,22 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import NavBar from '../components/NavBar';
 import InfoContext from '../context/infoContext';
 import './Orders.css';
 import OrderCard from '../components/OrderCard';
 
 function Orders() {
-  const { infoUser } = useContext(InfoContext);
+  const { infoUser, requestOrders } = useContext(InfoContext);
+  const [orders, setOrders] = useState([]);
 
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem('user'));
+    const response = async () => {
+      setOrders(await requestOrders(user.token));
+    };
+    response();
+  }, []);
+
+  console.log(orders);
   return (
     <div>
       <div>
@@ -17,7 +27,19 @@ function Orders() {
         />
       </div>
       <div className="orders-container">
-        <OrderCard
+
+        {
+          orders ? orders.map((item) => (<OrderCard
+            key={ item.id }
+            status={ item.status.toLowerCase() }
+            cardRole="customer"
+            display="d-none"
+            height="h-145"
+            item={ item }
+          />)) : null
+        }
+
+        {/* <OrderCard
           status="pendente"
           cardRole="customer"
           display="d-none"
@@ -34,7 +56,7 @@ function Orders() {
           cardRole="customer"
           display="d-none"
           height="h-145"
-        />
+        /> */}
       </div>
     </div>
   );
