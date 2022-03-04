@@ -1,7 +1,6 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import TableRow from './TableRow';
-import InfoContext from '../context/infoContext';
 import './Table.css';
 
 const title = [
@@ -19,9 +18,8 @@ const titleShort = [
   'ValorUnitário',
   'Sub-total'];
 
-function Table({ displayName, datatest }) {
-  const { productsInCart } = useContext(InfoContext);
-
+function Table({ displayName, datatest, products }) {
+  console.log(products);
   return (
     <table className="table">
       <thead>
@@ -35,7 +33,7 @@ function Table({ displayName, datatest }) {
       </thead>
       <tbody>
         {
-          productsInCart.map(({ name, quantity, price, productId }, index) => (
+          products.map(({ name, quantity, price, productId }, index) => (
             <TableRow
               key={ productId }
               productId={ productId }
@@ -56,6 +54,7 @@ function Table({ displayName, datatest }) {
 Table.propTypes = {
   displayName: PropTypes.string.isRequired,
   datatest: PropTypes.string.isRequired,
+  products: PropTypes.arrayOf(PropTypes.any).isRequired,
 };
 
 export default Table;

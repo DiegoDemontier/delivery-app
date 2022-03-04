@@ -76,6 +76,21 @@ function InfoProvider({ children }) {
     return request;
   };
 
+  const requestOrderDetails = async (token, id) => {
+    const headers = {
+      'Content-Type': 'application/json',
+      Authorization: token,
+    };
+
+    const request = await axios
+      .get(`http://localhost:3001/sale/${id}`, { headers })
+      .then((res) => res.data)
+      .catch((err) => err.response);
+
+    if (!request) return REQUEST_FAILED;
+    return request;
+  };
+
   const contextValues = {
     requestLogin,
     requestRegister,
@@ -87,6 +102,7 @@ function InfoProvider({ children }) {
     setProductsInCart,
     requestAllSellers,
     requestNewSale,
+    requestOrderDetails,
   };
 
   return (
