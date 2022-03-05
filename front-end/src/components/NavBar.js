@@ -51,10 +51,11 @@ NavBar.defaultProps = {
   productClasse: '',
   ordersClasse: '',
   display: '',
+  user: '',
 };
 
 NavBar.propTypes = {
-  user: PropTypes.string.isRequired,
+  user: PropTypes.string,
   productClasse: PropTypes.string,
   ordersClasse: PropTypes.string,
   display: PropTypes.string,
