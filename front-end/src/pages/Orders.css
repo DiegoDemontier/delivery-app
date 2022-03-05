@@ -5,3 +5,11 @@
   margin: 20px auto;
   width: 80%;
 }
+
+.link {
+  text-decoration: none;
+  display: flex;
+  width: 49%;
+  color: inherit;
+}
+

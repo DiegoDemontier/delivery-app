@@ -26,7 +26,7 @@ function OrderCard({ status, cardRole, display, height, item }) {
       <div className="adress-container">
         <div className={ `adress-container-top ${height}` }>
           <div
-            className={ status }
+            className={ status.toLowerCase() }
             data-testid={ `${cardRole}_orders__element-delivery-status-${item.id}` }
           >
             {status}

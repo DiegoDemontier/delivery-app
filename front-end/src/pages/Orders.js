@@ -1,4 +1,5 @@
 import React, { useContext, useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import NavBar from '../components/NavBar';
 import InfoContext from '../context/infoContext';
 import './Orders.css';
@@ -31,34 +32,18 @@ function Orders() {
       <div className="orders-container">
 
         {
-          orders ? orders.map((item) => (<OrderCard
-            key={ item.id }
-            status={ item.status.toLowerCase() }
-            cardRole="customer"
-            display="d-none"
-            height="h-145"
-            item={ item }
-          />)) : null
+          orders ? orders.map((item) => (
+            <Link to={ `/customer/orders/${item.id}` } className="link" key={ item.id }>
+              <OrderCard
+                key={ item.id }
+                status={ item.status }
+                cardRole="customer"
+                display="d-none"
+                height="h-145"
+                item={ item }
+              />
+            </Link>)) : null
         }
-
-        {/* <OrderCard
-          status="pendente"
-          cardRole="customer"
-          display="d-none"
-          height="h-145"
-        />
-        <OrderCard
-          status="preparando"
-          cardRole="customer"
-          display="d-none"
-          height="h-145"
-        />
-        <OrderCard
-          status="entregue"
-          cardRole="customer"
-          display="d-none"
-          height="h-145"
-        /> */}
       </div>
     </div>
   );
