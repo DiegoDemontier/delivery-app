@@ -19,7 +19,15 @@ function Login() {
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem('user'));
     if (user) {
-      history.replace('customer/products');
+
+      if (user.role === 'customer') {
+        history.replace('customer/products');
+      }
+
+      if (user.role === 'seller') {
+        history.replace('seller/orders');
+      }
+      
     }
   }, [history]);
 
