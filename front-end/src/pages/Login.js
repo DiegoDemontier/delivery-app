@@ -19,7 +19,6 @@ function Login() {
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem('user'));
     if (user) {
-
       if (user.role === 'customer') {
         history.replace('customer/products');
       }
@@ -27,7 +26,6 @@ function Login() {
       if (user.role === 'seller') {
         history.replace('seller/orders');
       }
-      
     }
   }, [history]);
 
