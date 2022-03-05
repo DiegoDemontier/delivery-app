@@ -7,9 +7,9 @@
 }
 
 .link {
-  text-decoration: none;
-  display: flex;
-  width: 49%;
   color: inherit;
+  display: flex;
+  text-decoration: none;
+  width: 49%;
 }
 

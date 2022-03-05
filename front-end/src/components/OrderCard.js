@@ -58,7 +58,7 @@ OrderCard.propTypes = {
   cardRole: PropTypes.string.isRequired,
   display: PropTypes.string.isRequired,
   height: PropTypes.string.isRequired,
-  item: PropTypes.arrayOf(PropTypes.any).isRequired,
+  item: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default OrderCard;

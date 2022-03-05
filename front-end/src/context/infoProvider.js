@@ -20,6 +20,11 @@ function InfoProvider({ children }) {
     setTotalPrice(total);
   }, [productsInCart]);
 
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem('user'));
+    setInfoUser(user);
+  }, [setInfoUser]);
+
   const contentType = '\'Content-Type\': \'application/json\',';
 
   const requestLogin = async ({ email, password }) => {
