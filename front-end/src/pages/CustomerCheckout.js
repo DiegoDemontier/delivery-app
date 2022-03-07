@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import { useHistory } from 'react-router-dom';
 import NavBar from '../components/NavBar';
 import InfoContext from '../context/infoContext';
 import Table from '../components/Table';
@@ -7,12 +8,15 @@ import './CustomerCheckout.css';
 import DetailsForm from '../components/DetailsForm';
 
 function CustomerCheckout() {
+  const history = useHistory();
   const { infoUser, totalPrice, productsInCart } = useContext(InfoContext);
-  console.log(productsInCart);
+
   return (
     <div>
       <NavBar
         user={ infoUser.name }
+        handleClickNav={ () => history.push('/customer/products') }
+        suffix="products"
         productClasse="green"
         text="PRODUTOS"
       />

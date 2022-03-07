@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
+import { useHistory } from 'react-router-dom';
 import NavBar from '../components/NavBar';
 import Table from '../components/Table';
 import TotalValue from '../components/TotalValue';
@@ -8,6 +9,7 @@ import socket from '../utils/socketClient';
 import './OrderDetails.css';
 
 function OrderDetails({ match }) {
+  const history = useHistory();
   const { params: { id } } = match;
   const { infoUser, totalPrice, requestOrderDetails } = useContext(InfoContext);
   const [orderDetails, setOrderDetails] = useState({});
@@ -29,11 +31,12 @@ function OrderDetails({ match }) {
   };
 
   useEffect(() => {
+    const user = JSON.parse(localStorage.getItem('user'));
     const response = async () => {
-      setOrderDetails(await requestOrderDetails(infoUser.token, id));
+      setOrderDetails(await requestOrderDetails(user.token, id));
     };
     response();
-  }, [requestOrderDetails, id, infoUser]);
+  }, [requestOrderDetails, id]);
 
   useEffect(() => {
     if (orderDetails.seller !== undefined) {
@@ -68,6 +71,8 @@ function OrderDetails({ match }) {
     <div>
       <NavBar
         user={ infoUser.name }
+        handleClickNav={ () => history.push('/customer/products') }
+        suffix="products"
         ordersClasse="green"
         text="PRODUTOS"
       />
