@@ -4,6 +4,7 @@ import NavBar from '../components/NavBar';
 import Table from '../components/Table';
 import TotalValue from '../components/TotalValue';
 import InfoContext from '../context/infoContext';
+import socket from '../utils/socketClient';
 import './OrderDetails.css';
 
 function OrderDetails({ match }) {
@@ -17,17 +18,7 @@ function OrderDetails({ match }) {
     status: '',
     totalPrice: '',
   });
-
   const prefix = 'customer_order_details__';
-
-  useEffect(() => {
-    const user = JSON.parse(localStorage.getItem('user'));
-    const response = async () => {
-      setOrderDetails(await requestOrderDetails(user.token, id));
-    };
-    response();
-  }, [requestOrderDetails, id]);
-
   const setDate = (date) => {
     const newDate = new Date(date);
     const day = String(newDate.getDate()).padStart(2, '0');
@@ -36,6 +27,13 @@ function OrderDetails({ match }) {
 
     return `${day}/${month}/${year}`;
   };
+
+  useEffect(() => {
+    const response = async () => {
+      setOrderDetails(await requestOrderDetails(infoUser.token, id));
+    };
+    response();
+  }, [requestOrderDetails, id, infoUser]);
 
   useEffect(() => {
     if (orderDetails.seller !== undefined) {
@@ -51,7 +49,20 @@ function OrderDetails({ match }) {
     }
   }, [orderDetails]);
 
-  const stateButton = true;
+  useEffect(() => {
+    socket.on('refreshStatus', (status) => {
+      setSaleDetails((prev) => ({
+        ...prev, status,
+      }));
+    });
+  }, [setSaleDetails]);
+
+  const handleClick = () => {
+    const { role } = infoUser;
+    const status = 'Entregue';
+
+    socket.emit('changeStatus', { id, status, role });
+  };
 
   return (
     <div>
@@ -94,7 +105,8 @@ function OrderDetails({ match }) {
             type="button"
             data-testid={ `${prefix}button-delivery-check` }
             className="marcador bold"
-            disabled={ stateButton }
+            onClick={ handleClick }
+            disabled={ saleDetails.status !== 'Em Trânsito' }
           >
             MARCAR COMO ENTREGUE
           </button>

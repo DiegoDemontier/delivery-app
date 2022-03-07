@@ -19,7 +19,6 @@ const titleShort = [
   'Sub-total'];
 
 function Table({ displayName, datatest, products }) {
-  console.log(products);
   return (
     <table className="table">
       <thead>

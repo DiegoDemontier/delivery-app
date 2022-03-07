@@ -5,7 +5,6 @@ import InfoContext from '../context/infoContext';
 
 function TableRow({ index, name, quantity, price, productId, displayName, datatest }) {
   const { setProductsInCart } = useContext(InfoContext);
-  console.log(index, name, quantity, price, productId, displayName, datatest);
 
   return (
     <tr className="items">
