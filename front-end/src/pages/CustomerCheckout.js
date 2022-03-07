@@ -29,7 +29,7 @@ function CustomerCheckout() {
         />
         <TotalValue
           dataTestid="customer_checkout__element-order-total-price"
-          value={ totalPrice }
+          value={ Number(totalPrice).toFixed(2).replace('.', ',') }
         />
       </div>
       <h4 className="title">Detalhes e Endereço para Entrega</h4>
