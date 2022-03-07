@@ -5,6 +5,7 @@ import NavBar from '../components/NavBar';
 import TableSellerOrderDetails from '../components/TableSellerOrderDetails';
 import TotalValue from '../components/TotalValue';
 import InfoContext from '../context/infoContext';
+import setDate from '../utils/helper';
 import socket from '../utils/socketClient';
 
 function SellerOrdersDetails({ match }) {
@@ -27,15 +28,6 @@ function SellerOrdersDetails({ match }) {
     };
     response();
   }, [requestOrderDetails, id]);
-
-  const setDate = (date) => {
-    const newDate = new Date(date);
-    const day = String(newDate.getDate()).padStart(2, '0');
-    const month = String(newDate.getMonth() + 1).padStart(2, '0');
-    const year = newDate.getFullYear();
-
-    return `${day}/${month}/${year}`;
-  };
 
   useEffect(() => {
     if (sellerOrderDetails.products !== undefined) {

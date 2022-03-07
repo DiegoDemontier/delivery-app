@@ -3,7 +3,7 @@ const { sales } = require('../database/models');
 const checkUser = async (checkStatus, status, id, role) => {
   if (role === 'seller' && checkStatus) {
     await sales.update({ status }, { where: { id } });
-  } 
+  }
 
   if (role === 'customer' && status === 'Entregue') {
     await sales.update({ status }, { where: { id } });

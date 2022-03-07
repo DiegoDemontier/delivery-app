@@ -58,7 +58,7 @@ NavBar.defaultProps = {
   ordersClasse: '',
   display: '',
   user: '',
-  handleClickNav: '',
+  handleClickNav: PropTypes.func,
 };
 
 NavBar.propTypes = {

@@ -6,6 +6,7 @@ import Table from '../components/Table';
 import TotalValue from '../components/TotalValue';
 import InfoContext from '../context/infoContext';
 import socket from '../utils/socketClient';
+import setDate from '../utils/helper';
 import './OrderDetails.css';
 
 function OrderDetails({ match }) {
@@ -21,14 +22,6 @@ function OrderDetails({ match }) {
     totalPrice: '',
   });
   const prefix = 'customer_order_details__';
-  const setDate = (date) => {
-    const newDate = new Date(date);
-    const day = String(newDate.getDate()).padStart(2, '0');
-    const month = String(newDate.getMonth() + 1).padStart(2, '0');
-    const year = newDate.getFullYear();
-
-    return `${day}/${month}/${year}`;
-  };
 
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem('user'));
