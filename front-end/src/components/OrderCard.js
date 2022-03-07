@@ -1,16 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import './OrderCard.css';
+import setDate from '../utils/helper';
 
 function OrderCard({ status, cardRole, display, height, item }) {
-  const setDate = (date) => {
-    const newDate = new Date(date);
-    const day = String(newDate.getDate()).padStart(2, '0');
-    const month = String(newDate.getMonth() + 1).padStart(2, '0');
-    const year = newDate.getFullYear();
-    return `${day}/${month}/${year}`;
-  };
-
   const date = setDate(item.sale_date);
 
   return (
@@ -46,7 +39,7 @@ function OrderCard({ status, cardRole, display, height, item }) {
           data-testid="seller_orders__element-card-address-<id>"
           className={ `small-text ${display}` }
         >
-          Rua Irmãos Monteiro, Bairo Pedras, 851
+          { `${item.deliveryAddress} ${item.deliveryNumber}` }
         </div>
       </div>
     </div>

@@ -1,12 +1,16 @@
 import React, { useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
+import { useHistory } from 'react-router-dom';
 import NavBar from '../components/NavBar';
 import Table from '../components/Table';
 import TotalValue from '../components/TotalValue';
 import InfoContext from '../context/infoContext';
+import socket from '../utils/socketClient';
+import setDate from '../utils/helper';
 import './OrderDetails.css';
 
 function OrderDetails({ match }) {
+  const history = useHistory();
   const { params: { id } } = match;
   const { infoUser, totalPrice, requestOrderDetails } = useContext(InfoContext);
   const [orderDetails, setOrderDetails] = useState({});
@@ -17,7 +21,6 @@ function OrderDetails({ match }) {
     status: '',
     totalPrice: '',
   });
-
   const prefix = 'customer_order_details__';
 
   useEffect(() => {
@@ -27,15 +30,6 @@ function OrderDetails({ match }) {
     };
     response();
   }, [requestOrderDetails, id]);
-
-  const setDate = (date) => {
-    const newDate = new Date(date);
-    const day = String(newDate.getDate()).padStart(2, '0');
-    const month = String(newDate.getMonth() + 1).padStart(2, '0');
-    const year = newDate.getFullYear();
-
-    return `${day}/${month}/${year}`;
-  };
 
   useEffect(() => {
     if (orderDetails.seller !== undefined) {
@@ -51,12 +45,27 @@ function OrderDetails({ match }) {
     }
   }, [orderDetails]);
 
-  const stateButton = true;
+  useEffect(() => {
+    socket.on('refreshStatus', (status) => {
+      setSaleDetails((prev) => ({
+        ...prev, status,
+      }));
+    });
+  }, [setSaleDetails]);
+
+  const handleClick = () => {
+    const { role } = infoUser;
+    const status = 'Entregue';
+
+    socket.emit('changeStatus', { id, status, role });
+  };
 
   return (
     <div>
       <NavBar
         user={ infoUser.name }
+        handleClickNav={ () => history.push('/customer/products') }
+        suffix="products"
         ordersClasse="green"
         text="PRODUTOS"
       />
@@ -94,7 +103,8 @@ function OrderDetails({ match }) {
             type="button"
             data-testid={ `${prefix}button-delivery-check` }
             className="marcador bold"
-            disabled={ stateButton }
+            onClick={ handleClick }
+            disabled={ saleDetails.status !== 'Em Trânsito' }
           >
             MARCAR COMO ENTREGUE
           </button>

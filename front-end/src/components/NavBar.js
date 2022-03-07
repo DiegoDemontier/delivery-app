@@ -4,7 +4,13 @@ import PropTypes from 'prop-types';
 import Button from './Button';
 import './NavBar.css';
 
-function NavBar({ user, productClasse, ordersClasse, display, text }) {
+function NavBar({ user,
+  productClasse,
+  ordersClasse,
+  display,
+  suffix,
+  handleClickNav,
+  text }) {
   const history = useHistory();
 
   const handleClick = () => {
@@ -18,8 +24,8 @@ function NavBar({ user, productClasse, ordersClasse, display, text }) {
         <Button
           buttonClasse={ `product-nav ${productClasse}` }
           text={ text }
-          buttonDatatestid="customer_products__element-navbar-link-products"
-          handleClick={ () => history.push('/customer/products') }
+          buttonDatatestid={ `customer_products__element-navbar-link-${suffix}` }
+          handleClick={ handleClickNav }
         />
         <Button
           buttonClasse={ `product-nav ${ordersClasse} ${display}` }
@@ -52,6 +58,7 @@ NavBar.defaultProps = {
   ordersClasse: '',
   display: '',
   user: '',
+  handleClickNav: PropTypes.func,
 };
 
 NavBar.propTypes = {
@@ -60,6 +67,8 @@ NavBar.propTypes = {
   ordersClasse: PropTypes.string,
   display: PropTypes.string,
   text: PropTypes.string.isRequired,
+  suffix: PropTypes.string.isRequired,
+  handleClickNav: PropTypes.func,
 };
 
 export default NavBar;

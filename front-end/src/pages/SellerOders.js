@@ -17,13 +17,12 @@ function SellerOrders() {
     response();
   }, [requestOrders]);
 
-  console.log('------- sellerOrders:', sellerOrders);
-
   return (
     <div>
       <div>
         <NavBar
           user={ infoUser.name }
+          suffix="orders"
           ordersClasse="green"
           display="no-display"
           text="PEDIDOS"
@@ -35,7 +34,7 @@ function SellerOrders() {
             <Link to={ `/seller/orders/${item.id}` } className="link" key={ item.id }>
               <OrderCard
                 key={ item.id }
-                status={ item.status.toLowerCase() }
+                status={ item.status }
                 cardRole="seller"
                 display="d-block"
                 height="h-110"
