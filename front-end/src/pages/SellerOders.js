@@ -1,11 +1,23 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import NavBar from '../components/NavBar';
 import InfoContext from '../context/infoContext';
 import './Orders.css';
 import OrderCard from '../components/OrderCard';
 
 function SellerOrders() {
-  const { infoUser } = useContext(InfoContext);
+  const { infoUser, requestOrders } = useContext(InfoContext);
+  const [sellerOrders, setSellerOrders] = useState([]);
+
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem('user'));
+    const response = async () => {
+      setSellerOrders(await requestOrders(user.token));
+    };
+    response();
+  }, [requestOrders]);
+
+  console.log('------- sellerOrders:', sellerOrders);
 
   return (
     <div>
@@ -18,24 +30,19 @@ function SellerOrders() {
         />
       </div>
       <div className="orders-container">
-        <OrderCard
-          status="pendente"
-          cardRole="seller"
-          display="d-block"
-          height="h-110"
-        />
-        <OrderCard
-          status="preparando"
-          cardRole="seller"
-          display="d-block"
-          height="h-110"
-        />
-        <OrderCard
-          status="entregue"
-          cardRole="seller"
-          display="d-block"
-          height="h-110"
-        />
+        {
+          sellerOrders ? sellerOrders.map((item) => (
+            <Link to={ `/seller/orders/${item.id}` } className="link" key={ item.id }>
+              <OrderCard
+                key={ item.id }
+                status={ item.status.toLowerCase() }
+                cardRole="seller"
+                display="d-block"
+                height="h-110"
+                item={ item }
+              />
+            </Link>)) : null
+        }
       </div>
     </div>
   );

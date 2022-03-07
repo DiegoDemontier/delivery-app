@@ -107,7 +107,7 @@ function OrderDetails({ match }) {
         />
         <TotalValue
           dataTestid={ `${prefix}element-order-total-price` }
-          value={ totalPrice }
+          value={ Number(totalPrice).toFixed(2).replace('.', ',') }
         />
       </div>
     </div>

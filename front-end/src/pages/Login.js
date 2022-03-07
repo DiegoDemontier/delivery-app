@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useContext } from 'react';
+import React, { useState, useMemo, useContext, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import Card from '../components/Card';
 import './Login.css';
@@ -16,6 +16,19 @@ function Login() {
 
   const history = useHistory();
 
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem('user'));
+    if (user) {
+      if (user.role === 'customer') {
+        history.replace('customer/products');
+      }
+
+      if (user.role === 'seller') {
+        history.replace('seller/orders');
+      }
+    }
+  }, [history]);
+
   const handleChangeLogin = ({ target: { value, name } }) => {
     setLogin({
       ...login,
@@ -29,7 +42,14 @@ function Login() {
     if (getUser.token) {
       localStorage.setItem('user', JSON.stringify(getUser));
       setInfoUser(getUser);
-      history.replace('customer/products');
+
+      if (getUser.role === 'customer') {
+        history.replace('customer/products');
+      }
+
+      if (getUser.role === 'seller') {
+        history.replace('seller/orders');
+      }
     }
 
     setMessageErrorLogin('block');
