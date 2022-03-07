@@ -25,7 +25,7 @@ function NavBar({ user, productClasse, ordersClasse, display, text }) {
           buttonClasse={ `product-nav ${ordersClasse} ${display}` }
           text="MEUS PEDIDOS"
           buttonDatatestid="customer_products__element-navbar-link-orders"
-          handleClick={ () => history.push('/customer/ordes') }
+          handleClick={ () => history.push('/customer/orders') }
         />
       </div>
       <div className="test">
@@ -51,10 +51,11 @@ NavBar.defaultProps = {
   productClasse: '',
   ordersClasse: '',
   display: '',
+  user: '',
 };
 
 NavBar.propTypes = {
-  user: PropTypes.string.isRequired,
+  user: PropTypes.string,
   productClasse: PropTypes.string,
   ordersClasse: PropTypes.string,
   display: PropTypes.string,

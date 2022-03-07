@@ -7,7 +7,7 @@ import InfoContext from '../context/infoContext';
 import Button from '../components/Button';
 
 function Cadastro() {
-  const { requestRegister } = useContext(InfoContext);
+  const { requestRegister, setInfoUser, requestLogin } = useContext(InfoContext);
   const [register, setRegister] = useState({
     name: '',
     email: '',
@@ -28,6 +28,12 @@ function Cadastro() {
       role: 'customer',
     };
     const res = await requestRegister(registerData);
+    const getUser = await requestLogin({ email, password });
+    if (getUser.token) {
+      localStorage.setItem('user', JSON.stringify(getUser));
+      setInfoUser(getUser);
+    }
+
     console.log(res);
     if (res.message === 'User created successfully') history.push('customer/products');
 

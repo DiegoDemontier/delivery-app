@@ -8,8 +8,7 @@ function TotalValue({ value, dataTestid }) {
       data-testid={ dataTestid }
       className="total-value"
     >
-      Total R$
-      { ` ${value.toFixed(2).replace('.', ',')}` }
+      { ` ${value}` }
     </span>
   );
 }

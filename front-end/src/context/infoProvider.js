@@ -20,6 +20,13 @@ function InfoProvider({ children }) {
     setTotalPrice(total);
   }, [productsInCart]);
 
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem('user'));
+    setInfoUser(user);
+  }, [setInfoUser]);
+
+  const contentType = '\'Content-Type\': \'application/json\',';
+
   const requestLogin = async ({ email, password }) => {
     const request = await axios
       .post('http://localhost:3001/login', { email, password })
@@ -63,10 +70,10 @@ function InfoProvider({ children }) {
 
   const requestNewSale = async (token, data) => {
     const headers = {
-      'Content-Type': 'application/json',
+      // 'Content-Type': 'application/json',
+      contentType,
       Authorization: token,
     };
-
     const request = await axios
       .post('http://localhost:3001/sale', data, { headers })
       .then((res) => res.data)
@@ -78,12 +85,27 @@ function InfoProvider({ children }) {
 
   const requestOrderDetails = async (token, id) => {
     const headers = {
-      'Content-Type': 'application/json',
+      // 'Content-Type': 'application/json',
+      contentType,
       Authorization: token,
     };
-
     const request = await axios
       .get(`http://localhost:3001/sale/${id}`, { headers })
+      .then((res) => res.data)
+      .catch((err) => err.response);
+
+    if (!request) return REQUEST_FAILED;
+    return request;
+  };
+
+  const requestOrders = async (token) => {
+    const headers = {
+      // 'Content-Type': 'application/json',
+      contentType,
+      Authorization: token,
+    };
+    const request = await axios
+      .get('http://localhost:3001/sale', { headers })
       .then((res) => res.data)
       .catch((err) => err.response);
 
@@ -103,6 +125,7 @@ function InfoProvider({ children }) {
     requestAllSellers,
     requestNewSale,
     requestOrderDetails,
+    requestOrders,
   };
 
   return (

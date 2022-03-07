@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import NavBar from '../components/NavBar';
 import TableSellerOrderDetails from '../components/TableSellerOrderDetails';
@@ -6,8 +6,52 @@ import TotalValue from '../components/TotalValue';
 import InfoContext from '../context/infoContext';
 
 function SellerOrdersDetails({ match }) {
-  const { infoUser, totalPrice } = useContext(InfoContext);
+  const { infoUser, requestOrderDetails } = useContext(InfoContext);
   const { params: { id } } = match;
+
+  const [sellerOrderDetails, setSellerOrderDetails] = useState({});
+  const [sellerSaleDetails, setSellerSaleDetails] = useState({
+    products: [],
+    date: '',
+    status: '',
+    totalPrice: '',
+  });
+  const prepareStateButton = false;
+  const deliveryStateButton = true;
+
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem('user'));
+    const response = async () => {
+      setSellerOrderDetails(await requestOrderDetails(user.token, id));
+    };
+    response();
+  }, [requestOrderDetails, id]);
+
+  const setDate = (date) => {
+    const newDate = new Date(date);
+    const day = String(newDate.getDate()).padStart(2, '0');
+    const month = String(newDate.getMonth() + 1).padStart(2, '0');
+    const year = newDate.getFullYear();
+
+    return `${day}/${month}/${year}`;
+  };
+
+  useEffect(() => {
+    setSellerSaleDetails(
+      {
+        products: sellerOrderDetails.products,
+        date: setDate(sellerOrderDetails.sale_date),
+        status: sellerOrderDetails.status,
+        totalPrice: sellerOrderDetails.totalPrice,
+      },
+    );
+    console.log(sellerOrderDetails);
+  }, [sellerOrderDetails]);
+
+  console.log(sellerSaleDetails);
+
+  const prefix = 'seller_order_details';
+
   return (
     <div>
       <NavBar
@@ -28,34 +72,42 @@ function SellerOrdersDetails({ match }) {
             {`PEDIDO ${id}`}
           </span>
           <span
-            data-testid="seller_order_details__element-order-details-label-order-date"
+            data-testid={ `${prefix}__element-order-details-label-order-date` }
             className="date bold"
           >
-            07/04/2021
+            { sellerSaleDetails.date }
           </span>
           <span
-            data-testid="seller_order_details__element-order-details-
-            label-delivery-status"
+            data-testid={ `${prefix}__element-order-details-label-delivery-status` }
             className="status bold"
           >
-            ENTREGUE
+            { sellerSaleDetails.status }
           </span>
-          <span
-            data-testid="seller_order_details__button-preparing-check"
+          <button
+            data-testid={ `${prefix}__button-preparing-check` }
             className="marcador bold"
+            disabled={ prepareStateButton }
+            type="button"
           >
-            MARCAR COMO ENTREGUE
-          </span>
-          <span
-            data-testid="seller_order_details__button-dispatch-check"
+            PREPARAR PEDIDO
+          </button>
+          <button
+            data-testid={ `${prefix}__button-dispatch-check` }
             className="marcador bold"
+            disabled={ deliveryStateButton }
+            type="button"
           >
             SAIU PARA A ENTREGA
-          </span>
+          </button>
         </header>
 
-        <TableSellerOrderDetails />
-        <TotalValue value={ totalPrice } />
+        <TableSellerOrderDetails
+          products={ sellerSaleDetails.products }
+        />
+        <TotalValue
+          value={ Number(sellerSaleDetails.totalPrice).toFixed(2).replace('.', ',') }
+          dataTestid="seller_order_details__element-order-total-price"
+        />
       </div>
     </div>
   );
