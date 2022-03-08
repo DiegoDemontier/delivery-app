@@ -5,7 +5,7 @@ const md5 = require('../utils/md5');
 const { userSchema } = require('../utils/schemas');
 
 const createUser = async (data) => {
-  const { name, email, password, role } = data;
+  const { name, email, password } = data;
 
   const { error } = userSchema.validate({ name, email, password });
   if (error) throw errorConstructor(badRequest, error.message);
@@ -14,7 +14,7 @@ const createUser = async (data) => {
   if (emailExists) throw errorConstructor(Conflict, 'User already registered');
 
   const newPassword = md5(password);
-  const newData = { name, email, password: newPassword, role };
+  const newData = { name, email, password: newPassword };
 
   await users.create(newData);
 

@@ -3,9 +3,9 @@ const { created, success } = require('../utils/statusCode');
 
 const createUser = async (req, res, next) => {
   try {
-    const { name, email, password, role } = req.body;
+    const { name, email, password } = req.body;
 
-    const data = { name, email, password, role };
+    const data = { name, email, password };
     await service.createUser(data);
     
     return res.status(created).json({ message: 'User created successfully' });
