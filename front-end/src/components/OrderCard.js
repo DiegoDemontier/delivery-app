@@ -1,10 +1,18 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import './OrderCard.css';
 import setDate from '../utils/helper';
+import socket from '../utils/socketClient';
 
 function OrderCard({ status, cardRole, display, height, item }) {
   const date = setDate(item.sale_date);
+  const [newStatus, setNewStatus] = useState(status);
+
+  useEffect(() => {
+    socket.on('refreshStatus', (order) => {
+      setNewStatus(order.status);
+    });
+  }, [setNewStatus]);
 
   return (
     <div className="order-card">
@@ -22,7 +30,7 @@ function OrderCard({ status, cardRole, display, height, item }) {
             className={ status.toLowerCase() }
             data-testid={ `${cardRole}_orders__element-delivery-status-${item.id}` }
           >
-            {status}
+            {newStatus}
           </div>
           <div className="third-block">
             <span data-testid={ `${cardRole}_orders__element-order-date-${item.id}` }>

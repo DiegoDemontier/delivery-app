@@ -17,7 +17,6 @@ module.exports = (io) => io.on('connection', (socket) => {
 
     await checkUser(checkStatus, status, id, role);
     const order = await sales.findByPk(id);
-
-    socket.emit('refreshStatus', order.status);
+    io.emit('refreshStatus', order);
   });
 });
