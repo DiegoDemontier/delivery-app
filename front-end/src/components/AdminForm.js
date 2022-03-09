@@ -33,7 +33,6 @@ function AdminForm() {
     || !emailValidation(adminFormData.email)
     || !passwordValidation(adminFormData.password), [adminFormData]);
 
-
   return (
     <form className="admin-details-form">
       <div className="admin-form-input">
