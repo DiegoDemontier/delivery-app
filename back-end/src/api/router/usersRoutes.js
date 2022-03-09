@@ -1,5 +1,5 @@
 const express = require('express');
-const { createUser,
+const {
   findAllSellers,
   createUserByAdmin,
   findUsersByAdmin,
@@ -8,7 +8,6 @@ const auth = require('../middleware/auth');
 
 const routerUsers = express.Router();
 
-routerUsers.post('/', createUser);
 routerUsers.get('/seller', findAllSellers);
 routerUsers.delete('/admin/:id', auth, deleteUserByAdmin);
 routerUsers.post('/admin', auth, createUserByAdmin);

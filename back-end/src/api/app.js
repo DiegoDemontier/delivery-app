@@ -14,7 +14,8 @@ const io = require('socket.io')(http, {
 
 require('../sockets/status')(io);
 
-const usersRoutes = require('./router/usersRoutes');
+const usersRoutes = require('../router/usersRoutes');
+
 const loginRoutes = require('./router/loginRoutes');
 const salesRoutes = require('./router/salesRoutes');
 const productsRoutes = require('./router/productsRoutes');
