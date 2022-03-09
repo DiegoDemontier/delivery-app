@@ -6,6 +6,14 @@ const userSchema = Joi.object({
   password: Joi.string().min(6).required(),
 });
 
+const adminSchema = Joi.object({
+  name: Joi.string().min(12).required(),
+  email: Joi.string().email().required(),
+  password: Joi.string().min(6).required(),
+  role: Joi.string().required(),
+  adminRole: Joi.string().required(),
+});
+
 const loginSchema = Joi.object({
   email: Joi.string().email().required(),
   password: Joi.string().min(6).required(),
@@ -30,4 +38,5 @@ module.exports = {
   userSchema,
   loginSchema,
   saleSchema,
+  adminSchema,
 };

@@ -1,8 +1,8 @@
 const { users } = require('../../database/models');
-const { Conflict, badRequest } = require('../utils/statusCode');
+const { Conflict, badRequest, Unauthorized } = require('../utils/statusCode');
 const errorConstructor = require('../utils/errorHandling');
 const md5 = require('../utils/md5');
-const { userSchema } = require('../utils/schemas');
+const { userSchema, adminSchema } = require('../utils/schemas');
 
 const createUser = async (data) => {
   const { name, email, password } = data;
@@ -30,7 +30,27 @@ const findAllSellers = async () => {
   return getSellers;
 };
 
+const createUserByAdmin = async (data) => {
+  const { name, email, password, role, adminRole } = data;
+
+  if (adminRole !== 'administrator') throw errorConstructor(Unauthorized, 'unauthorized user');
+
+  const { error } = adminSchema.validate(data);
+  if (error) throw errorConstructor(badRequest, error.message);
+
+  const emailExists = await users.findOne({ where: { email } });
+  if (emailExists) throw errorConstructor(Conflict, 'User already registered');
+
+  const newPassword = md5(password);
+  const newData = { name, email, password: newPassword, role };
+
+  await users.create(newData);
+
+  return null;
+};
+
 module.exports = {
   createUser,
   findAllSellers,
+  createUserByAdmin,
 };

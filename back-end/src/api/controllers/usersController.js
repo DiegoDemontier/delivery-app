@@ -26,7 +26,23 @@ const findAllSellers = async (req, res, next) => {
   }
 };
 
+const createUserByAdmin = async (req, res, next) => {
+  try {
+    const { name, email, password, role } = req.body;
+    const { role: adminRole } = req.user;
+
+    const data = { name, email, password, role, adminRole };
+    await service.createUserByAdmin(data);
+    
+    return res.status(created).json({ message: 'User created successfully' });
+  } catch (error) {
+    console.log(`ERROR CREATE USER BY ADMIN -> ${error.message}`);
+    return next(error);
+  }
+};
+
 module.exports = {
   createUser,
   findAllSellers,
+  createUserByAdmin,
 };
