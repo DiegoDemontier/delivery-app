@@ -7,6 +7,7 @@ import TotalValue from '../components/TotalValue';
 import InfoContext from '../context/infoContext';
 import setDate from '../utils/helper';
 import socket from '../utils/socketClient';
+import '../components/TableRow.css';
 
 function SellerOrdersDetails({ match }) {
   const history = useHistory();
@@ -43,9 +44,9 @@ function SellerOrdersDetails({ match }) {
   }, [sellerOrderDetails]);
 
   useEffect(() => {
-    socket.on('refreshStatus', (status) => {
+    socket.on('refreshStatus', (order) => {
       setSellerSaleDetails((prev) => ({
-        ...prev, status,
+        ...prev, status: order.status,
       }));
     });
   }, [sellerSaleDetails]);

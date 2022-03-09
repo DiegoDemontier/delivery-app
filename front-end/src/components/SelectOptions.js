@@ -12,10 +12,11 @@ function SelectOptions({ labelName,
   return (
     <label htmlFor={ name } className={ labelClass }>
       { labelName }
+      <br />
       <select
         name={ name }
         id={ name }
-        className={ selectClass }
+        className={ `${selectClass} w-95` }
         data-testid={ datatestid }
         onChange={ handleChange }
       >

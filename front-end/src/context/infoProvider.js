@@ -113,6 +113,51 @@ function InfoProvider({ children }) {
     return request;
   };
 
+  const requestRegisterUser = async (token, data) => {
+    const headers = {
+      // 'Content-Type': 'application/json',
+      contentType,
+      Authorization: token,
+    };
+    const request = await axios
+      .post('http://localhost:3001/admin', data, { headers })
+      .then((res) => res.data)
+      .catch((err) => err.response);
+
+    if (!request) return REQUEST_FAILED;
+    return request;
+  };
+
+  const requestAllUsers = async (token) => {
+    const headers = {
+      // 'Content-Type': 'application/json',
+      contentType,
+      Authorization: token,
+    };
+    const request = await axios
+      .get('http://localhost:3001/admin', { headers })
+      .then((res) => res.data)
+      .catch((err) => err.response);
+
+    if (!request) return REQUEST_FAILED;
+    return request;
+  };
+
+  const requestdeleteUser = async (token, id) => {
+    const headers = {
+      // 'Content-Type': 'application/json',
+      contentType,
+      Authorization: token,
+    };
+    const request = await axios
+      .delete(`http://localhost:3001/admin/${id}`, { headers })
+      .then((res) => res.data)
+      .catch((err) => err.response);
+
+    if (!request) return REQUEST_FAILED;
+    return request;
+  };
+
   const contextValues = {
     requestLogin,
     requestRegister,
@@ -126,6 +171,9 @@ function InfoProvider({ children }) {
     requestNewSale,
     requestOrderDetails,
     requestOrders,
+    requestRegisterUser,
+    requestAllUsers,
+    requestdeleteUser,
   };
 
   return (

@@ -46,9 +46,9 @@ function OrderDetails({ match }) {
   }, [orderDetails]);
 
   useEffect(() => {
-    socket.on('refreshStatus', (status) => {
+    socket.on('refreshStatus', (order) => {
       setSaleDetails((prev) => ({
-        ...prev, status,
+        ...prev, status: order.status,
       }));
     });
   }, [setSaleDetails]);

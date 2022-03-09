@@ -26,7 +26,7 @@ function TableSellerOrderDetails({ products }) {
             : products.map(({ name, price, salesProducts: { quantity } }, index) => (
               <tr key={ index } className="items">
                 <td
-                  className="green-row"
+                  className="green-row border-radius-left center-text"
                   data-testid={ `seller_order_details__element-order
                   -table-item-number-${index}` }
                 >
@@ -53,7 +53,7 @@ function TableSellerOrderDetails({ products }) {
                   {Number(price).toFixed(2).replace('.', ',')}
                 </td>
                 <td
-                  className="blue-row center-white"
+                  className="blue-row center-white border-radius-right"
                   data-testid={ `seller_order_details__element-order
                   -table-sub-total-${index}` }
                 >
