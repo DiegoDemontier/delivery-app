@@ -49,8 +49,19 @@ const createUserByAdmin = async (data) => {
   return null;
 };
 
+const findUsersByAdmin = async (adminRole) => {
+  if (adminRole !== 'administrator') throw errorConstructor(Unauthorized, 'unauthorized user');
+
+  const getUsers = await users.findAll({
+    attributes: { exclude: 'password' },
+  });
+  
+  return getUsers;
+};
+
 module.exports = {
   createUser,
   findAllSellers,
   createUserByAdmin,
+  findUsersByAdmin,
 };

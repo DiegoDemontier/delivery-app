@@ -41,8 +41,22 @@ const createUserByAdmin = async (req, res, next) => {
   }
 };
 
+const findUsersByAdmin = async (req, res, next) => {
+  try {
+    const { role: adminRole } = req.user;
+
+    const users = await service.findUsersByAdmin(adminRole);
+    
+    return res.status(created).json(users);
+  } catch (error) {
+    console.log(`ERROR FIND USERS BY ADMIN -> ${error.message}`);
+    return next(error);
+  }
+};
+
 module.exports = {
   createUser,
   findAllSellers,
   createUserByAdmin,
+  findUsersByAdmin,
 };
