@@ -4,7 +4,6 @@ const errorConstructor = require('../../utils/errorHandling');
 
 module.exports = async (adminRole, adminId, id) => {
   if (adminRole !== 'administrator') throw errorConstructor(Unauthorized, 'unauthorized user');
-  console.log(adminId, id);
   if (Number(adminId) === Number(id)) throw errorConstructor(Unauthorized, 'deletion not allowed');
 
   const excluded = await users.destroy({ where: { id } });
