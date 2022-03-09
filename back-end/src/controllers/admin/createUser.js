@@ -4,6 +4,7 @@ const { createUser } = require('../../services/admin');
 module.exports = async (req, res, next) => {
   try {
     const { name, email, password, role } = req.body;
+    console.log(req.user);
     const { role: adminRole } = req.user;
 
     const data = { name, email, password, role, adminRole };
@@ -11,7 +12,7 @@ module.exports = async (req, res, next) => {
     
     return res.status(created).json({ message: 'User created successfully' });
   } catch (error) {
-    console.log(`ERROR CREATE USER BY ADMIN -> ${error.message}`);
+    console.log(`ERROR CREATE USER -> ${error.message}`);
     return next(error);
   }
 };

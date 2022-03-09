@@ -4,16 +4,6 @@ const errorConstructor = require('../utils/errorHandling');
 
 const message = 'unauthorized user';
 
-const findUsersByAdmin = async (adminRole) => {
-  if (adminRole !== 'administrator') throw errorConstructor(Unauthorized, message);
-
-  const getUsers = await users.findAll({
-    attributes: { exclude: 'password' },
-  });
-  
-  return getUsers;
-};
-
 const deleteUserByAdmin = async (adminRole, id) => {
   if (adminRole !== 'administrator') throw errorConstructor(Unauthorized, message);
 
@@ -24,6 +14,5 @@ const deleteUserByAdmin = async (adminRole, id) => {
 };
 
 module.exports = {
-  findUsersByAdmin,
   deleteUserByAdmin,
 };
