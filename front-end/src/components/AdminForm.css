@@ -1,0 +1,33 @@
+.admin-details-form {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 10px 5px 0;
+}
+
+.admin-form-input {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.admin-details-label {
+  color: #584c4c;
+}
+
+.button-container {
+  justify-content: center;
+}
+
+.admin-form-button {
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #036b52;
+  color: white;
+}
+
+.w-95 {
+  width: 95%;
+}
+

@@ -23,6 +23,10 @@ function Login() {
         history.replace('customer/products');
       }
 
+      if (user.role === 'administrator') {
+        history.replace('admin/manage');
+      }
+
       if (user.role === 'seller') {
         history.replace('seller/orders');
       }
@@ -49,6 +53,10 @@ function Login() {
 
       if (getUser.role === 'seller') {
         history.replace('seller/orders');
+      }
+
+      if (getUser.role === 'administrator') {
+        history.replace('admin/manage');
       }
     }
 

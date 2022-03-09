@@ -1,35 +1,35 @@
-.items td {
+.admin-items td {
   padding: 5px;
 }
 
-.light-blue-row {
+.admin-light-blue-row {
   background-color: #d0e7e2;
 }
 
-.remover {
+.admin-remover {
   background-color: transparent;
   cursor: pointer;
   height: 100%;
   width: 100%;
 }
 
-.green-row {
+.admin-green-row {
   background-color: #2fc18c;
 }
 
-.dark-green-row {
+.admin-dark-green-row {
   background-color: #036b52;
 }
 
-.purple-row {
+.admin-purple-row {
   background-color: #421981;
 }
 
-.blue-row {
+.admin-blue-row {
   background-color: #056cf9;
 }
 
-.center-white {
+.admin-center-white {
   color: white;
   text-align: center;
 }
@@ -38,12 +38,24 @@
   text-align: center;
 }
 
-.no-display {
-  display: none;
+.w-05 {
+  width: 5%;
 }
 
-.show {
-  display: block;
+.w-05 {
+  width: 5%;
+}
+
+.w-30 {
+  width: 30%;
+}
+
+.w-25 {
+  width: 25%;
+}
+
+.w-10 {
+  width: 10%;
 }
 
 .border-radius-left {
