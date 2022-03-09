@@ -15,6 +15,7 @@ const io = require('socket.io')(http, {
 require('../sockets/status')(io);
 
 const usersRoutes = require('../router/usersRoutes');
+const adminRoutes = require('../router/adminRoutes');
 
 const loginRoutes = require('./router/loginRoutes');
 const salesRoutes = require('./router/salesRoutes');
@@ -28,6 +29,7 @@ app.use('/user', usersRoutes);
 app.use('/login', loginRoutes);
 app.use('/sale', salesRoutes);
 app.use('/product', productsRoutes);
+app.use('/admin', adminRoutes);
 
 app.use('/images', express.static(path.resolve(__dirname, '..', '..', 'public', 'images')));
 
