@@ -108,14 +108,6 @@ function DetailsForm() {
         buttonDatatestid="customer_checkout__button-submit-order"
         handleClick={ handleClick }
       />
-      {/* <button
-        data-testid="customer_checkout__button-submit-order"
-        className="finalizar-pedido"
-        type="button"
-        onClick={ handleClick }
-      >
-        FINALIZAR PEDIDO
-      </button> */}
     </form>
   );
 }
