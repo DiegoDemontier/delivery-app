@@ -17,9 +17,9 @@ require('../sockets/status')(io);
 const usersRoutes = require('../router/users');
 const adminRoutes = require('../router/admin');
 const loginRoutes = require('../router/login');
+const productsRoutes = require('../router/products');
 
 const salesRoutes = require('./router/salesRoutes');
-const productsRoutes = require('./router/productsRoutes');
 const errorMiddleware = require('./middleware/errorHandle');
 
 app.use(express.json());
