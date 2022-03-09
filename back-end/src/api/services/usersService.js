@@ -1,8 +1,10 @@
 const { users } = require('../../database/models');
-const { Conflict, badRequest, Unauthorized } = require('../utils/statusCode');
+const { Conflict, badRequest, Unauthorized, notFound } = require('../utils/statusCode');
 const errorConstructor = require('../utils/errorHandling');
 const md5 = require('../utils/md5');
 const { userSchema, adminSchema } = require('../utils/schemas');
+
+const message = 'unauthorized user';
 
 const createUser = async (data) => {
   const { name, email, password } = data;
@@ -33,7 +35,7 @@ const findAllSellers = async () => {
 const createUserByAdmin = async (data) => {
   const { name, email, password, role, adminRole } = data;
 
-  if (adminRole !== 'administrator') throw errorConstructor(Unauthorized, 'unauthorized user');
+  if (adminRole !== 'administrator') throw errorConstructor(Unauthorized, message);
 
   const { error } = adminSchema.validate(data);
   if (error) throw errorConstructor(badRequest, error.message);
@@ -50,7 +52,7 @@ const createUserByAdmin = async (data) => {
 };
 
 const findUsersByAdmin = async (adminRole) => {
-  if (adminRole !== 'administrator') throw errorConstructor(Unauthorized, 'unauthorized user');
+  if (adminRole !== 'administrator') throw errorConstructor(Unauthorized, message);
 
   const getUsers = await users.findAll({
     attributes: { exclude: 'password' },
@@ -59,9 +61,19 @@ const findUsersByAdmin = async (adminRole) => {
   return getUsers;
 };
 
+const deleteUserByAdmin = async (adminRole, id) => {
+  if (adminRole !== 'administrator') throw errorConstructor(Unauthorized, message);
+
+  const excluded = await users.destroy({ where: { id } });
+  if (excluded === 0) throw errorConstructor(notFound, 'User not found');
+  
+  return null;
+};
+
 module.exports = {
   createUser,
   findAllSellers,
   createUserByAdmin,
   findUsersByAdmin,
+  deleteUserByAdmin,
 };
