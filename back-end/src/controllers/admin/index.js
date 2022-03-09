@@ -1,9 +1,9 @@
 const createUser = require('./createUser');
-const findUsers = require('./findUsers');
+const findAllUsers = require('./findAllUsers');
 const deleteUser = require('./deleteUser');
 
 module.exports = {
   createUser,
-  findUsers,
+  findAllUsers,
   deleteUser,
 };
