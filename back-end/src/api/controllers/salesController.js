@@ -1,18 +1,5 @@
 const service = require('../services/salesService');
-const { created, success } = require('../utils/statusCode');
-
-const createSale = async (req, res, next) => {
-  try {
-    const { id } = req.user;
-    const data = { ...req.body, userId: id };
-    const newSale = await service.createSale(data);
-    
-    return res.status(created).json(newSale);
-  } catch (error) {
-    console.log(`ERROR CREATE SALE -> ${error.message}`);
-    return next(error);
-  }
-};
+const { success } = require('../utils/statusCode');
 
 const findSaleById = async (req, res, next) => {
   try {
@@ -42,7 +29,6 @@ const findAllSales = async (req, res, next) => {
 };
 
 module.exports = {
-  createSale,
   findSaleById,
   findAllSales,
 };

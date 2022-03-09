@@ -18,9 +18,8 @@ const usersRoutes = require('../router/users');
 const adminRoutes = require('../router/admin');
 const loginRoutes = require('../router/login');
 const productsRoutes = require('../router/products');
-
-const salesRoutes = require('./router/salesRoutes');
-const errorMiddleware = require('./middleware/errorHandle');
+const salesRoutes = require('../router/sales');
+const errorMiddleware = require('../middleware/errorHandle');
 
 app.use(express.json());
 app.use(cors());
