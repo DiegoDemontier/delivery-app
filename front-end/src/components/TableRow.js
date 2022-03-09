@@ -9,7 +9,7 @@ function TableRow({ index, name, quantity, price, productId, displayName, datate
   return (
     <tr className="items">
       <td
-        className="green-row"
+        className="green-row center-text border-radius-left"
         data-testid={ `customer_${datatest}__element-order-table-item-number-${index}` }
       >
         {index + 1}
@@ -34,13 +34,14 @@ function TableRow({ index, name, quantity, price, productId, displayName, datate
       </td>
       <td
         data-testid={ `customer_${datatest}__element-order-table-sub-total-${index}` }
-        className="blue-row center-white"
+        className={ displayName === 'no-display'
+          ? 'blue-row center-white border-radius-right' : 'blue-row center-white' }
       >
         {(quantity * price).toFixed(2).replace('.', ',')}
       </td>
       <td
         data-testid={ `customer_${datatest}__element-order-table-remove-${index}` }
-        className={ `green-row ${displayName}` }
+        className={ `green-row ${displayName} border-radius-right` }
       >
         <button
           className="remover center-white"

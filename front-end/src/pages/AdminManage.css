@@ -1,0 +1,19 @@
+.form-container {
+  border: 1px solid grey;
+  margin: 10px auto;
+  padding-top: 10px;
+  position: relative;
+  width: 70%;
+}
+
+.form-title {
+  margin: 10px auto;
+  width: 70%;
+}
+
+.admin-table {
+  border-collapse: separate;
+  border-spacing: 0 10px;
+  margin: 10px auto 100px;
+  width: 95%;
+}

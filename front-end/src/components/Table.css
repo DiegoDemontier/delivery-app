@@ -1,4 +1,8 @@
 .table {
+  border-collapse: separate;
+  border-spacing: 0 10px;
   margin: 10px auto 100px;
   width: 95%;
 }
+
+/* https://stackoverflow.com/questions/10690299/how-to-add-a-margin-to-a-table-row-tr */
