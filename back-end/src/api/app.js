@@ -16,8 +16,8 @@ require('../sockets/status')(io);
 
 const usersRoutes = require('../router/users');
 const adminRoutes = require('../router/admin');
+const loginRoutes = require('../router/login');
 
-const loginRoutes = require('./router/loginRoutes');
 const salesRoutes = require('./router/salesRoutes');
 const productsRoutes = require('./router/productsRoutes');
 const errorMiddleware = require('./middleware/errorHandle');

@@ -1,12 +1,12 @@
 const { users } = require('../../database/models');
-const { badRequest, notFound } = require('../utils/statusCode');
-const { loginSchema } = require('../utils/schemas');
-const errorConstructor = require('../utils/errorHandling');
-const md5 = require('../utils/md5');
+const { badRequest, notFound } = require('../../utils/statusCode');
+const { loginSchema } = require('../../utils/schemas');
+const errorConstructor = require('../../utils/errorHandling');
+const md5 = require('../../utils/md5');
 
-const { genToken } = require('./authService');
+const { genToken } = require('../auth');
 
-const login = async (email, password) => {
+module.exports = async (email, password) => {
   const { error } = loginSchema.validate({ email, password });
   if (error) throw errorConstructor(badRequest, error.message);
   
@@ -27,8 +27,4 @@ const login = async (email, password) => {
   };
 
   return data;
-};
-
-module.exports = {
-  login,
 };
